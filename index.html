@@ -500,18 +500,18 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     flex: 1;
+    overflow-y: auto;
+    max-height: calc(100vh - 160px);
   }
 
   .brief-main {
     padding: 2rem 2.5rem;
-    overflow-y: auto;
   }
 
   .brief-sidebar {
     background: var(--surface);
     border-left: 1px solid var(--border);
     padding: 2rem 1.5rem;
-    overflow-y: auto;
   }
 
   .brief-section {
