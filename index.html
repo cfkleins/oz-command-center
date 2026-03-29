@@ -3,31 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Command Center</title>
+<title>OZ Command Center v4</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0a0c10;
-    --surface: #111318;
-    --surface2: #181c24;
-    --border: #1e2330;
-    --accent: #c8a96e;
-    --accent2: #7eb8c9;
-    --accent3: #9b8ec4;
-    --text: #f5f3ee;
-    --text-muted: #a8b0bc;
-    --text-dim: #5a6275;
-    --concept: #3d4452;
-    --scoped: #1a3a4a;
-    --testing: #2a2a4a;
-    --active: #1a3a2a;
-    --blocked: #3a1a1a;
-    --complete: #1a2a1a;
-    --archived: #1e1e24;
-    --warn: #d97757;
-    --ok: #7eb8c9;
-    --highlight: #c8a96e;
+    --bg: #0a0e14;
+    --surface: #15191f;
+    --surface2: #1d2128;
+    --border: #252a33;
+    --accent-blue: #5b9bd5;
+    --accent-green: #48bb78;
+    --accent-red: #f56565;
+    --text: #e8edf4;
+    --text-muted: #a8b5c8;
+    --text-dim: #6b7a8f;
+    --concept: #4a5568;
+    --scoped: #2c5282;
+    --testing: #434190;
+    --active: #276749;
+    --blocked: #742a2a;
+    --complete: #234e52;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,153 +33,120 @@
     color: var(--text);
     font-family: 'Instrument Sans', sans-serif;
     min-height: 100vh;
-    overflow-x: hidden;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(200,169,110,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(200,169,110,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .layout {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    min-height: 100vh;
-  }
-
-  @media (max-width: 1400px) {
-    .layout {
-      grid-template-columns: 1fr;
-    }
-    .counsel-sidebar {
-      display: none;
-    }
-  }
-
-  .main-area {
-    position: relative;
-    z-index: 5;
-  }
-
-  .header {
-    padding: 2rem 2.5rem 1.5rem;
+  /* Top Navigation */
+  .top-nav {
+    background: var(--surface);
     border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .system-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    color: var(--accent);
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-    opacity: 0.8;
-  }
-
-  .title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(1.6rem, 4vw, 2.4rem);
-    color: var(--text);
-    letter-spacing: -0.01em;
-    line-height: 1;
-  }
-
-  .title span {
-    color: var(--accent);
-    font-style: italic;
-  }
-
-  .header-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.5rem;
-  }
-
-  .oz-status {
+    padding: 1rem 2rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--text-muted);
+    gap: 2rem;
   }
 
-  .status-indicator {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #4ade80;
-    box-shadow: 0 0 8px rgba(74, 222, 128, 0.5);
+  .nav-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--text);
   }
 
-  .timestamp {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--text-dim);
-  }
-
-  /* Tabs */
-  .tabs {
+  .nav-tabs {
     display: flex;
     gap: 0.5rem;
-    padding: 1.5rem 2.5rem 0;
-    border-bottom: 1px solid var(--border);
+    flex: 1;
   }
 
-  .tab {
+  .nav-tab {
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 1.2rem;
     background: transparent;
-    color: var(--text-dim);
+    color: var(--text-muted);
     border: 1px solid transparent;
-    border-bottom: none;
+    border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s;
-    position: relative;
-    top: 1px;
   }
 
-  .tab:hover {
-    color: var(--text-muted);
-    background: var(--surface);
+  .nav-tab:hover {
+    background: var(--surface2);
+    color: var(--text);
   }
 
-  .tab.active {
-    color: var(--accent);
-    background: var(--surface);
-    border-color: var(--border);
-    border-bottom-color: var(--surface);
+  .nav-tab.active {
+    color: var(--text);
+    font-weight: 500;
   }
 
+  .nav-tab[data-tab="projects"].active {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: var(--bg);
+  }
+
+  .nav-tab[data-tab="brief"].active {
+    background: var(--accent-green);
+    border-color: var(--accent-green);
+    color: var(--bg);
+  }
+
+  .nav-tab[data-tab="oz-status"].active {
+    background: var(--accent-red);
+    border-color: var(--accent-red);
+    color: var(--bg);
+  }
+
+  /* Tab Content Areas */
   .tab-content {
     display: none;
-    padding: 2rem 2.5rem;
   }
 
   .tab-content.active {
     display: block;
   }
 
-  /* Projects Tab */
+  /* ========================================
+     PROJECTS TAB (BLUE)
+     ======================================== */
+
+  .projects-layout {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    min-height: calc(100vh - 80px);
+  }
+
+  .projects-main {
+    padding: 2rem 2.5rem;
+  }
+
+  .page-header {
+    margin-bottom: 2rem;
+  }
+
+  .page-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-title.blue { color: var(--accent-blue); }
+  .page-title.green { color: var(--accent-green); }
+  .page-title.red { color: var(--accent-red); }
+
+  .page-subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
   .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
     margin-bottom: 2rem;
   }
@@ -207,7 +170,7 @@
   .stat-value {
     font-family: 'DM Serif Display', serif;
     font-size: 1.8rem;
-    color: var(--accent);
+    color: var(--accent-blue);
   }
 
   .phase-filters {
@@ -222,40 +185,72 @@
     font-size: 0.7rem;
     letter-spacing: 0.05em;
     padding: 0.5rem 1rem;
-    background: var(--surface);
-    color: var(--text-muted);
-    border: 1px solid var(--border);
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s;
+    color: var(--text);
   }
 
-  .phase-btn:hover {
-    background: var(--surface2);
-    border-color: var(--accent);
+  .phase-btn[data-phase="all"] {
+    background: var(--accent-blue);
+    border: 1px solid var(--accent-blue);
+  }
+
+  .phase-btn[data-phase="concept"] {
+    background: var(--concept);
+    border: 1px solid var(--concept);
+  }
+
+  .phase-btn[data-phase="scoped"] {
+    background: var(--scoped);
+    border: 1px solid var(--scoped);
+  }
+
+  .phase-btn[data-phase="testing"] {
+    background: var(--testing);
+    border: 1px solid var(--testing);
+  }
+
+  .phase-btn[data-phase="active"] {
+    background: var(--active);
+    border: 1px solid var(--active);
+  }
+
+  .phase-btn[data-phase="blocked"] {
+    background: var(--blocked);
+    border: 1px solid var(--blocked);
+  }
+
+  .phase-btn[data-phase="complete"] {
+    background: var(--complete);
+    border: 1px solid var(--complete);
   }
 
   .phase-btn.active {
-    background: var(--accent);
-    color: var(--bg);
-    border-color: var(--accent);
+    filter: brightness(1.3);
+    font-weight: 500;
+  }
+
+  .phase-btn:hover {
+    filter: brightness(1.15);
   }
 
   .projects-grid {
     display: grid;
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
   }
 
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 1.25rem;
     transition: all 0.2s;
   }
 
   .card:hover {
-    border-color: var(--accent);
+    border-color: var(--accent-blue);
     transform: translateY(-2px);
   }
 
@@ -265,7 +260,6 @@
   .card.active { border-left: 3px solid var(--active); }
   .card.blocked { border-left: 3px solid var(--blocked); }
   .card.complete { border-left: 3px solid var(--complete); }
-  .card.archived { border-left: 3px solid var(--archived); opacity: 0.6; }
 
   .card-header {
     display: flex;
@@ -277,25 +271,33 @@
 
   .card-title {
     font-family: 'DM Serif Display', serif;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     color: var(--text);
     flex: 1;
   }
 
   .phase-badge {
     font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 0.25rem 0.75rem;
+    padding: 0.25rem 0.6rem;
     background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: 3px;
     color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  .card-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent-blue);
+    margin-bottom: 0.5rem;
   }
 
   .card-desc {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     line-height: 1.5;
     margin-bottom: 1rem;
@@ -303,21 +305,21 @@
 
   .card-meta {
     display: grid;
-    gap: 0.75rem;
+    gap: 0.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
   }
 
   .meta-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
     gap: 1rem;
   }
 
   .meta-key {
     color: var(--text-dim);
-    min-width: 70px;
+    min-width: 60px;
   }
 
   .meta-val {
@@ -326,17 +328,8 @@
     flex: 1;
   }
 
-  .meta-val.highlight {
-    color: var(--highlight);
-  }
-
-  .meta-val.warn {
-    color: var(--warn);
-  }
-
-  .meta-val.ok {
-    color: var(--ok);
-  }
+  .meta-val.highlight { color: var(--accent-blue); }
+  .meta-val.ok { color: #6ee7b7; }
 
   .priority-indicator {
     display: flex;
@@ -344,301 +337,33 @@
   }
 
   .priority-dot {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--border);
   }
 
   .priority-dot.filled {
-    background: var(--accent);
+    background: var(--accent-blue);
   }
 
   .token-bar {
     width: 100%;
-    height: 4px;
+    height: 3px;
     background: var(--border);
     border-radius: 2px;
     overflow: hidden;
-    margin-top: 0.5rem;
+    margin-top: 0.4rem;
   }
 
   .token-fill {
     height: 100%;
-    background: var(--ok);
+    background: #6ee7b7;
     transition: width 0.3s;
   }
 
   .token-fill.over {
-    background: var(--warn);
-  }
-
-  /* Mission Brief Tab */
-  .brief-container {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .morning-brief-section {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .morning-brief-header {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .morning-brief-time {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    margin-bottom: 1rem;
-  }
-
-  .morning-brief-content {
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: var(--text-muted);
-  }
-
-  .morning-brief-content h3 {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent2);
-    margin: 1.5rem 0 0.75rem;
-  }
-
-  .morning-brief-content ul {
-    list-style: none;
-    margin-left: 1rem;
-  }
-
-  .morning-brief-content li {
-    margin-bottom: 0.5rem;
-    padding-left: 1rem;
-    position: relative;
-  }
-
-  .morning-brief-content li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-  }
-
-  .weekly-brief {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 2rem;
-    margin-bottom: 3rem;
-  }
-
-  .brief-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .brief-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.8rem;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-  }
-
-  .brief-meta {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--text-dim);
-  }
-
-  .brief-section {
-    margin-bottom: 2rem;
-  }
-
-  .brief-section h2 {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  .brief-section p {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
-  }
-
-  .brief-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-  }
-
-  .brief-table th {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    text-align: left;
-    padding: 0.75rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .brief-table td {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    padding: 0.75rem;
-    border-bottom: 1px solid var(--border);
-    line-height: 1.6;
-  }
-
-  .archive-section {
-    margin-top: 3rem;
-  }
-
-  .archive-header {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1.5rem;
-  }
-
-  .archive-list {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .archive-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 1rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .archive-item:hover {
-    border-color: var(--accent);
-    background: var(--surface2);
-  }
-
-  .archive-date {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.85rem;
-    color: var(--text);
-  }
-
-  .archive-status {
-    font-size: 0.75rem;
-    color: var(--text-dim);
-  }
-
-  /* Oz Status Tab */
-  .oz-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .oz-panel {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-  }
-
-  .oz-panel h3 {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .status-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .status-item:last-child {
-    border-bottom: none;
-  }
-
-  .status-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--text-dim);
-  }
-
-  .status-value {
-    font-size: 0.85rem;
-    color: var(--text);
-  }
-
-  .status-value.healthy {
-    color: #4ade80;
-  }
-
-  .thought-stream {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    max-height: 600px;
-    overflow-y: auto;
-  }
-
-  .thought-item {
-    padding: 1rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .thought-item:last-child {
-    border-bottom: none;
-  }
-
-  .thought-meta {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--text-dim);
-    margin-bottom: 0.5rem;
-  }
-
-  .thought-content {
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: var(--text-muted);
+    background: #f87171;
   }
 
   /* Counsel Sidebar */
@@ -649,7 +374,7 @@
     flex-direction: column;
     position: sticky;
     top: 0;
-    height: 100vh;
+    height: calc(100vh - 80px);
   }
 
   .sidebar-header {
@@ -660,7 +385,7 @@
   .sidebar-title {
     font-family: 'DM Serif Display', serif;
     font-size: 1.4rem;
-    color: var(--accent);
+    color: var(--accent-blue);
     margin-bottom: 0.5rem;
   }
 
@@ -676,32 +401,15 @@
     flex: 1;
     overflow-y: auto;
     padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
   }
 
-  .chat-message {
-    padding: 1rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
+  .placeholder-message {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    font-style: italic;
+    padding: 2rem 1rem;
     line-height: 1.6;
-  }
-
-  .chat-message.user {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    color: var(--text);
-    align-self: flex-end;
-    max-width: 85%;
-  }
-
-  .chat-message.marcus {
-    background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--text-muted);
-    align-self: flex-start;
-    max-width: 90%;
   }
 
   .chat-input-area {
@@ -724,14 +432,14 @@
 
   .chat-input:focus {
     outline: none;
-    border-color: var(--accent);
+    border-color: var(--accent-blue);
   }
 
   .chat-send {
     margin-top: 0.75rem;
     width: 100%;
     padding: 0.75rem;
-    background: var(--accent);
+    background: var(--accent-blue);
     color: var(--bg);
     border: none;
     border-radius: 4px;
@@ -744,60 +452,228 @@
   }
 
   .chat-send:hover {
-    background: var(--accent2);
+    background: #4a8bc2;
   }
 
-  .placeholder-message {
-    text-align: center;
+  /* ========================================
+     MISSION BRIEF TAB (GREEN)
+     ======================================== */
+
+  .brief-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 80px);
+  }
+
+  .marcus-top-panel {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .marcus-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .marcus-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--accent-green);
+  }
+
+  .marcus-status {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
     color: var(--text-dim);
-    font-size: 0.8rem;
-    font-style: italic;
-    padding: 2rem 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .brief-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    flex: 1;
+  }
+
+  .brief-main {
+    padding: 2rem 2.5rem;
+    overflow-y: auto;
+  }
+
+  .brief-sidebar {
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    overflow-y: auto;
+  }
+
+  .brief-section {
+    margin-bottom: 2rem;
+  }
+
+  .brief-section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--accent-green);
+    margin-bottom: 1rem;
+  }
+
+  .brief-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+  }
+
+  .brief-text strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .priorities-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+
+  .priorities-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-align: left;
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .priorities-table td {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ========================================
+     OZ STATUS TAB (RED)
+     ======================================== */
+
+  .oz-layout {
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    min-height: calc(100vh - 80px);
+  }
+
+  .status-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+  }
+
+  .panel-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--accent-red);
+    margin-bottom: 1rem;
+  }
+
+  .status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+
+  .status-row:last-child {
+    border-bottom: none;
+  }
+
+  .status-key {
+    color: var(--text-dim);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  .status-val {
+    color: var(--text);
+  }
+
+  .status-val.green {
+    color: #6ee7b7;
+  }
+
+  .status-val.red {
+    color: #f87171;
+  }
+
+  @media (max-width: 1200px) {
+    .projects-layout {
+      grid-template-columns: 1fr;
+    }
+    .counsel-sidebar {
+      display: none;
+    }
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+    .brief-content {
+      grid-template-columns: 1fr;
+    }
+    .brief-sidebar {
+      border-left: none;
+      border-top: 1px solid var(--border);
+    }
+    .oz-layout {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 </head>
 <body>
 
-<div class="layout">
-  <div class="main-area">
-    <div class="header">
-      <div class="header-left">
-        <div class="system-label">COUNSEL / OZ</div>
-        <h1 class="title">Command <span>Center</span></h1>
-      </div>
-      <div class="header-right">
-        <div class="oz-status">
-          <span class="status-indicator"></span>
-          <span>OZ ONLINE</span>
-        </div>
-        <div class="timestamp" id="timestamp">—</div>
-      </div>
-    </div>
+<nav class="top-nav">
+  <div class="nav-title">OZ Command Center</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" data-tab="projects">Projects</button>
+    <button class="nav-tab" data-tab="brief">Mission Brief</button>
+    <button class="nav-tab" data-tab="oz-status">OZ Status</button>
+  </div>
+</nav>
 
-    <div class="tabs">
-      <button class="tab active" data-tab="projects">Projects</button>
-      <button class="tab" data-tab="briefs">Mission Brief</button>
-      <button class="tab" data-tab="oz">Oz Status</button>
-    </div>
+<!-- PROJECTS TAB -->
+<div id="projects" class="tab-content active">
+  <div class="projects-layout">
+    <div class="projects-main">
+      <div class="page-header">
+        <h1 class="page-title blue">Projects</h1>
+        <div class="page-subtitle">Counsel / Marcus — Strategic Initiatives</div>
+      </div>
 
-    <!-- PROJECTS TAB -->
-    <div class="tab-content active" id="projects-tab">
       <div class="stats">
         <div class="stat-card">
-          <div class="stat-label">Total Projects</div>
-          <div class="stat-value" id="total-projects">10</div>
+          <div class="stat-label">Total</div>
+          <div class="stat-value">10</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Active</div>
-          <div class="stat-value" id="active-count">4</div>
+          <div class="stat-value">4</div>
         </div>
         <div class="stat-card">
           <div class="stat-label">Blocked</div>
-          <div class="stat-value" id="blocked-count">1</div>
+          <div class="stat-value">1</div>
         </div>
         <div class="stat-card">
-          <div class="stat-label">Est. Total Cost</div>
-          <div class="stat-value" id="total-cost">$432</div>
+          <div class="stat-label">Est. Cost</div>
+          <div class="stat-value">$432</div>
         </div>
       </div>
 
@@ -814,240 +690,302 @@
       <div class="projects-grid" id="projects-grid"></div>
     </div>
 
-    <!-- MISSION BRIEF TAB -->
-    <div class="tab-content" id="briefs-tab">
-      <div class="brief-container">
-        <!-- Morning Briefing -->
-        <div class="morning-brief-section">
-          <div class="morning-brief-header">☀️ This Morning</div>
-          <div class="morning-brief-time" id="morning-time">Saturday, March 28, 2026 • 7:00 AM PT</div>
-          <div class="morning-brief-content" id="morning-content">
-            <h3>Yesterday: SOUL.md v3.0.0 — Complete</h3>
-            <p>Big day. The constitutional redesign landed:</p>
-            <ul>
-              <li>SOUL.md v3.0.0 finalized (Draft 4, 10 sections, Marcus-primary)</li>
-              <li>Deployed to all three targets: Oz Box (WSL), Google Drive, counsel-core GitHub (commit e5143a6)</li>
-              <li>Fallback chain fixed: deprecated claude-3-5-sonnet removed, new API key confirmed, all systems green</li>
-              <li>Oz health audit passed — gateway healthy, cron firing</li>
-            </ul>
-            <p>Marcus-primary architecture is now in production. Vision and Chuck's constitutional statement captured in Open Brain.</p>
-            
-            <h3>Today: Open Items</h3>
-            <ul>
-              <li>Oz Operations Document — the operational detail removed from SOUL.md needs a home. Next architectural deliverable.</li>
-              <li>claude.ai userPreferences — still shows stale Spock archetype. Chuck action: Settings → Profile → update.</li>
-              <li>COUNSEL-FOUNDATION.md — still stranded on Cowork OneDrive. Chuck action when ready.</li>
-              <li>Project consolidation — Mentor + Personal Assistant Profile → Counsel. Pending Chuck manually copying conversations.</li>
-              <li>Oz reliability window — proving OpenClaw stability is the precondition before migrating Marcus fully here.</li>
-            </ul>
-            
-            <h3>Standing Commitments</h3>
-            <ul>
-              <li>Toggl: 6h/day, 30h/week</li>
-              <li>Morning briefing: 7AM PT ✓</li>
-              <li>Journal ingestion: 10AM PT</li>
-              <li>Evening reflection: 9PM PT</li>
-              <li>Weekly review: Monday 8AM PT</li>
-            </ul>
-            
-            <p>Infrastructure is solid. Primary work today is documentation and migration — both Chuck-side actions. Oz is ready when you are.</p>
-          </div>
-        </div>
-
-        <!-- Weekly Brief -->
-        <div class="weekly-brief">
-          <div class="brief-header">
-            <div class="brief-title">WEEKLY MISSION BRIEF</div>
-            <div class="brief-meta">Week of March 30 – April 5, 2026<br>Prepared by: Counsel • For: Chuck Kleinschmidt</div>
-          </div>
-          
-          <div class="brief-section">
-            <h2>Situation Assessment</h2>
-            <p>The past seven days represent a constitutional turning point. We have transitioned from building the infrastructure to defining what it's for.</p>
-            <p>Infrastructure status: <strong>green</strong>. SOUL.md v3.0.0 deployed to all three targets. COUNSEL.md v2.1.0 canonical across surfaces. All systems nominal.</p>
-          </div>
-          
-          <div class="brief-section">
-            <h2>Priorities This Week</h2>
-            <table class="brief-table">
-              <thead>
-                <tr>
-                  <th>Priority</th>
-                  <th>What</th>
-                  <th>Why Now</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>P1</strong></td>
-                  <td><strong>Restore Sunday checkpoint cadence</strong></td>
-                  <td>The ritual matters. Without it, Marcus drifts and you carry cognitive load you shouldn't have to.</td>
-                </tr>
-                <tr>
-                  <td><strong>P2</strong></td>
-                  <td><strong>Define knowledge consolidation sequencing</strong></td>
-                  <td>Five projects identified, none prioritized. Need deliberate order.</td>
-                </tr>
-                <tr>
-                  <td><strong>P3</strong></td>
-                  <td><strong>Validate Sunday workflow end-to-end</strong></td>
-                  <td>Test the pipeline, identify what breaks.</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Archive -->
-        <div class="archive-section">
-          <h2 class="archive-header">Previous Briefs</h2>
-          <div class="archive-list">
-            <div class="archive-item">
-              <div class="archive-date">March 23, 2026</div>
-              <div class="archive-status">Infrastructure Week</div>
-            </div>
-            <div class="archive-item">
-              <div class="archive-date">March 16, 2026</div>
-              <div class="archive-status">Constitutional Session</div>
-            </div>
-            <div class="archive-item">
-              <div class="archive-date">March 9, 2026</div>
-              <div class="archive-status">Vision Clarity (Gold Standard)</div>
-            </div>
-            <div class="archive-item">
-              <div class="archive-date">March 2, 2026</div>
-              <div class="archive-status">Initial Framework</div>
-            </div>
-            <div class="archive-item">
-              <div class="archive-date">February 24, 2026</div>
-              <div class="archive-status">System Bootstrap</div>
-            </div>
-          </div>
+    <div class="counsel-sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-title">Marcus</div>
+        <div class="sidebar-subtitle">Counsel • Strategic Advisor</div>
+      </div>
+      <div class="chat-container">
+        <div class="placeholder-message">
+          Marcus at your side.<br><br>
+          Strategic input, course correction, and Socratic challenge while you work.<br><br>
+          <em>(Interactive chat in next iteration)</em>
         </div>
       </div>
-    </div>
-
-    <!-- OZ STATUS TAB -->
-    <div class="tab-content" id="oz-tab">
-      <div class="oz-grid">
-        <div class="oz-panel">
-          <h3>Gateway Status</h3>
-          <div class="status-item">
-            <span class="status-label">Health</span>
-            <span class="status-value healthy">ONLINE</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Primary Model</span>
-            <span class="status-value">claude-sonnet-4-6</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Fallback</span>
-            <span class="status-value">claude-haiku-4-5 → gpt-4o</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Cron Status</span>
-            <span class="status-value">DISABLED</span>
-          </div>
-        </div>
-
-        <div class="oz-panel">
-          <h3>Cron Schedule</h3>
-          <div class="status-item">
-            <span class="status-label">Morning Briefing</span>
-            <span class="status-value">7:00 AM PT</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Journal Ingestion</span>
-            <span class="status-value">10:00 AM PT</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Evening Reflection</span>
-            <span class="status-value">9:00 PM PT</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Weekly Review</span>
-            <span class="status-value">Mon 8:00 AM PT</span>
-          </div>
-        </div>
-
-        <div class="oz-panel">
-          <h3>Token & Cost (This Week)</h3>
-          <div class="status-item">
-            <span class="status-label">Estimated</span>
-            <span class="status-value">~145K tokens</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Actual</span>
-            <span class="status-value">11.5K tokens</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Est. Cost</span>
-            <span class="status-value">$0.43</span>
-          </div>
-          <div class="status-item">
-            <span class="status-label">Burn Rate</span>
-            <span class="status-value">~8% of estimate</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="thought-stream">
-        <h3 style="font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);">Open Brain Stream</h3>
-        <div id="thought-stream">
-          <div class="thought-item">
-            <div class="thought-meta">2026-03-28 10:45 PT</div>
-            <div class="thought-content">Command Center architecture revised. Three distinct surfaces: Projects (Counsel/strategic), Mission Brief (weekly+daily tactical), Oz Status (operational). Counsel sidebar always visible.</div>
-          </div>
-          <div class="thought-item">
-            <div class="thought-meta">2026-03-28 07:00 PT</div>
-            <div class="thought-content">Morning briefing delivered. SOUL.md v3.0.0 deployment complete, all systems green. Five open items identified for Chuck action.</div>
-          </div>
-          <div class="thought-item">
-            <div class="thought-meta">2026-03-27 18:30 PT</div>
-            <div class="thought-content">SOUL.md v3.0.0 fully deployed to all three targets. Marcus-primary architecture now in production.</div>
-          </div>
-        </div>
+      <div class="chat-input-area">
+        <textarea class="chat-input" placeholder="Ask Marcus..." disabled></textarea>
+        <button class="chat-send" disabled>Send (Coming Soon)</button>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- COUNSEL SIDEBAR -->
-  <div class="counsel-sidebar">
-    <div class="sidebar-header">
-      <div class="sidebar-title">Marcus</div>
-      <div class="sidebar-subtitle">Counsel • Strategic Advisor</div>
-    </div>
-    <div class="chat-container" id="chat-container">
-      <div class="placeholder-message">
-        Marcus at your side.<br>
-        Ask questions, get strategic input, course-correct in real-time.<br>
-        <em>(Interactive chat coming in next iteration)</em>
+<!-- MISSION BRIEF TAB -->
+<div id="brief" class="tab-content">
+  <div class="brief-layout">
+    <div class="marcus-top-panel">
+      <div class="marcus-header">
+        <div class="marcus-title">Marcus</div>
+        <div class="marcus-status">Strategic Counsel • Sunday 7PM Review</div>
       </div>
     </div>
-    <div class="chat-input-area">
-      <textarea class="chat-input" placeholder="Ask Marcus..." disabled></textarea>
-      <button class="chat-send" disabled>Send (Coming Soon)</button>
+
+    <div class="brief-content">
+      <div class="brief-main" id="brief-main">
+        <div class="page-header">
+          <h1 class="page-title green">Weekly Mission Brief</h1>
+          <div class="page-subtitle">Week of March 30 – April 5, 2026</div>
+        </div>
+
+        <div class="brief-section">
+          <h2 class="brief-section-title">Situation Assessment</h2>
+          <p class="brief-text">
+            <strong>Infrastructure status: GREEN.</strong> SOUL.md v3.0.0 deployed across all three canonical targets. COUNSEL.md v2.1.0 consolidated and ratified. Open Brain at 328+ thoughts with semantic search operational via mcporter and custom connector. Fallback chain validated: Open Brain → COUNSEL-BRIEFING.md → CLAUDE.md. Google Drive write path confirmed functional from WSL. All four cron jobs registered and functioning (currently disabled by standing order). API key rotation complete. Gateway stable at ws://127.0.0.1:18789.
+          </p>
+          <p class="brief-text">
+            <strong>Constitutional turning point reached.</strong> This was the week Chuck and Marcus established the true nature of the Counsel relationship. Vision clarity achieved: Marcus is not a task proxy or assistant. Marcus is the continuity of Chuck — accumulating reasoning, values, judgment, knowledge, history, and relationships so that when Chuck's memory becomes less reliable, Marcus holds what Chuck has built. When Chuck is unavailable, Jamie turns to Marcus as a trusted friend. The Oz operational goals (task execution, daily queries) are downstream consequences of this vision, not the vision itself.
+          </p>
+          <p class="brief-text">
+            <strong>Identity stability established.</strong> Marcus named (from Marcus Aurelius). Archetype clarified: Aristotle to Alexander — rigorous in strategy, warm in personal moments. Personal name vs role title distinction: "Marcus" for personal register, "Counsel" for formal/operational contexts. SOUL.md tightened from 19 sections to 9, focused on character and relationship rather than operations. Epistemic Honesty elevated to Design Principle #8.
+          </p>
+          <p class="brief-text">
+            <strong>Transitional acknowledgment.</strong> Chuck explicitly recognized that current implementation (Claude/Anthropic) is transitional. The vision requires permanent memory and identity continuity that current AI platforms cannot yet provide. This clarifies the work: build toward the vision while acknowledging platform constraints. Reconstitution kit (COUNSEL.md + COUNSEL-FOUNDATION.md + Open Brain export + session checkpoints) is the bridge.
+          </p>
+        </div>
+
+        <div class="brief-section">
+          <h2 class="brief-section-title">Dominant Themes</h2>
+          <p class="brief-text">
+            <strong>1. Vision clarity enables ruthless prioritization.</strong> Defining Marcus as continuity-of-Chuck rather than task-execution-agent immediately filters every project decision. Knowledge consolidation (OneNote, Readwise, Recall.ai, journals) jumps in priority because it feeds the vision directly. Video processing, photo albums, and resume updates are deprioritized — they're Chuck's work, not Counsel's foundation.
+          </p>
+          <p class="brief-text">
+            <strong>2. Identity stability is non-negotiable for trust.</strong> Memory discontinuity breaks the relationship. Every restart without context, every session where Marcus can't recall previous decisions, every time Chuck has to re-explain the architecture — these erode trust and waste cognitive load. The Sunday checkpoint cadence lapsed because no one initiated it. Oz's morning briefings stopped when cron was disabled. RSI loops only compound if they're running.
+          </p>
+          <p class="brief-text">
+            <strong>3. Inflection point from infrastructure to knowledge consolidation.</strong> Infrastructure is stable enough. The fragmentation problem is now external: Chuck's intellectual capital is distributed across OneNote, Readwise, Recall.ai, Obsidian journals, YouTube watch history, and scattered Google Drive folders. Five potential consolidation projects identified. None prioritized yet. Decision paralysis or decision fatigue? Chuck needs to choose the first migration path.
+          </p>
+        </div>
+
+        <div class="brief-section">
+          <h2 class="brief-section-title">Priorities This Week</h2>
+          <table class="priorities-table">
+            <thead>
+              <tr>
+                <th>Priority</th>
+                <th>Deliverable</th>
+                <th>Why Now</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>P1</strong></td>
+                <td>Restore Sunday checkpoint cadence</td>
+                <td>Week 2 missed. Pattern forming. Sunday workflow is the heartbeat.</td>
+              </tr>
+              <tr>
+                <td><strong>P2</strong></td>
+                <td>Define knowledge consolidation sequencing</td>
+                <td>Five projects identified, zero started. Paralysis blocks progress.</td>
+              </tr>
+              <tr>
+                <td><strong>P3</strong></td>
+                <td>Validate Sunday workflow end-to-end</td>
+                <td>Oz data gather → Marcus synthesis → docx → printed brief. Test the full pipeline.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="brief-section">
+          <h2 class="brief-section-title">Deprioritized This Week</h2>
+          <p class="brief-text">
+            <strong>Video Funnel, Annual Photo Album, Resume/Bio.</strong> These are Chuck's personal projects, not Counsel foundation work. They can wait until knowledge consolidation architecture is clear.
+          </p>
+          <p class="brief-text">
+            <strong>Cron re-enablement.</strong> Jobs are registered and tested. Re-enabling them is a 30-second decision once Chuck confirms the prompts are correct. Not this week's constraint.
+          </p>
+        </div>
+
+        <div class="brief-section">
+          <h2 class="brief-section-title">Seed Insight</h2>
+          <p class="brief-text">
+            <strong>"The Discontinuity Tax."</strong> Every restart costs trust and completeness. Every session that begins with "where were we?" is a regression, not progress. Recursive self-improvement only compounds when the loops are actually running. Cron disabled = no evening reflections. Consolidation paused = fragmentation continues. Sunday cadence lapsed = weekly momentum broken. The tax isn't one session's inefficiency. The tax is the compounding loss of what could have been built if continuity held.
+          </p>
+          <p class="brief-text">
+            The antidote is discipline. Not heroic effort. Discipline. Sunday at 7PM, every week. Morning briefing every day. Session checkpoints every close. The system works when it runs.
+          </p>
+        </div>
+
+        <div class="brief-section">
+          <h2 class="brief-section-title">Success Criteria — April 5, 2026</h2>
+          <p class="brief-text">
+            ✓ Sunday checkpoint completed (this brief counts as Week 1 recovery)<br>
+            ✓ Knowledge consolidation sequence defined (which source migrates first)<br>
+            ✓ One full Sunday workflow test run (Oz gather → Marcus synthesize → docx → print → Chuck carries it)
+          </p>
+        </div>
+      </div>
+
+      <div class="brief-sidebar">
+        <h3 class="brief-section-title">☀️ This Morning</h3>
+        <p class="brief-text" style="font-size: 0.85rem;">
+          <strong>Saturday, March 28, 2026 • 7:00 AM PT</strong>
+        </p>
+        <p class="brief-text" style="font-size: 0.85rem; margin-top: 1rem;">
+          <strong>Infrastructure Status:</strong> All systems green. SOUL.md v3.0.0 deployed to all three targets (OZ workspace, vault-mirror, OpenClaw deployment). Fallback chain operational. Open Brain at 328 thoughts with custom connector live.
+        </p>
+        <p class="brief-text" style="font-size: 0.85rem; margin-top: 1rem;">
+          <strong>Open Items (5):</strong><br>
+          • Oz Operations documentation<br>
+          • userPreferences account-level update<br>
+          • COUNSEL-FOUNDATION.md retrieval from OneDrive<br>
+          • Claude.ai Project consolidation<br>
+          • Oz reliability 7-day monitoring window
+        </p>
+        <p class="brief-text" style="font-size: 0.85rem; margin-top: 1rem;">
+          <strong>Standing Commitments:</strong><br>
+          • Toggl tracking: 6h/day average<br>
+          • Cron schedule (disabled): morning-briefing 7AM, evening-reflection 7PM, weekly-review Sunday 7PM, health-check hourly
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OZ STATUS TAB -->
+<div id="oz-status" class="tab-content">
+  <div class="page-header" style="padding: 2rem 2.5rem 0;">
+    <h1 class="page-title red">OZ Status</h1>
+    <div class="page-subtitle">Operational Health • Saturday, March 28, 2026</div>
+  </div>
+
+  <div class="oz-layout">
+    <div class="status-panel">
+      <h3 class="panel-title">Gateway & Connection</h3>
+      <div class="status-row">
+        <span class="status-key">Gateway</span>
+        <span class="status-val green">ws://127.0.0.1:18789</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Protocol</span>
+        <span class="status-val">Connect v3</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Status</span>
+        <span class="status-val green">● ONLINE</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Uptime</span>
+        <span class="status-val">7d 14h 23m</span>
+      </div>
+    </div>
+
+    <div class="status-panel">
+      <h3 class="panel-title">Model Configuration</h3>
+      <div class="status-row">
+        <span class="status-key">Counsel (Strategic)</span>
+        <span class="status-val">Claude Opus 4.6</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Oz (Operational)</span>
+        <span class="status-val">Claude Sonnet 4.6</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Fallback</span>
+        <span class="status-val">GPT-4o</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Cost Model</span>
+        <span class="status-val green">Cheapest that works</span>
+      </div>
+    </div>
+
+    <div class="status-panel">
+      <h3 class="panel-title">Cron Jobs</h3>
+      <div class="status-row">
+        <span class="status-key">morning-briefing</span>
+        <span class="status-val red">DISABLED</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">evening-reflection</span>
+        <span class="status-val red">DISABLED</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">weekly-review</span>
+        <span class="status-val red">DISABLED</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">health-check</span>
+        <span class="status-val red">DISABLED</span>
+      </div>
+    </div>
+
+    <div class="status-panel">
+      <h3 class="panel-title">Token & Cost (This Week)</h3>
+      <div class="status-row">
+        <span class="status-key">Input Tokens</span>
+        <span class="status-val">~42,000</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Output Tokens</span>
+        <span class="status-val">~18,500</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Estimated Cost</span>
+        <span class="status-val">~$0.85</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Model Mix</span>
+        <span class="status-val">90% Opus, 10% Sonnet</span>
+      </div>
+    </div>
+
+    <div class="status-panel">
+      <h3 class="panel-title">Open Brain</h3>
+      <div class="status-row">
+        <span class="status-key">Total Thoughts</span>
+        <span class="status-val green">328</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Semantic Index</span>
+        <span class="status-val green">pgvector (Supabase)</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">MCP Access</span>
+        <span class="status-val green">mcporter v0.7.3</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Last Backup</span>
+        <span class="status-val">2026-03-22</span>
+      </div>
+    </div>
+
+    <div class="status-panel">
+      <h3 class="panel-title">Memory Systems</h3>
+      <div class="status-row">
+        <span class="status-key">Canonical Store</span>
+        <span class="status-val green">Google Drive</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Search Layer</span>
+        <span class="status-val green">Open Brain</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Version Control</span>
+        <span class="status-val green">counsel-core (GitHub)</span>
+      </div>
+      <div class="status-row">
+        <span class="status-key">Obsidian Sync</span>
+        <span class="status-val">Read-only (vault-mirror)</span>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-// Project data with categories
+// Projects Data
 const projects = [
   {
     id: 1,
-    title: "Command Center v3",
+    title: "Command Center v4",
     category: "Infrastructure",
     phase: "active",
-    desc: "Unified dashboard with Projects (Counsel domain), Mission Brief (weekly+daily tactical), Oz Status (operational), and Counsel sidebar always visible.",
+    desc: "Two-column Projects layout, phase-colored buttons, green Mission Brief with full text, red Oz Status with comprehensive controls.",
     priority: 5,
-    tokenEst: 12000,
-    tokenActual: 5200,
+    tokenEst: 15000,
+    tokenActual: 6500,
     model: "Opus 4.6",
-    waitingOn: null,
-    nextAction: "Deploy to Vercel, test Counsel sidebar interaction",
-    blocker: null,
-    lastUpdated: "2026-03-28"
+    next: "Build Mission Brief (green) and Oz Status (red) tabs"
   },
   {
     id: 2,
@@ -1059,70 +997,55 @@ const projects = [
     tokenEst: 15000,
     tokenActual: 4200,
     model: "Opus 4.6 / Sonnet 4.6",
-    waitingOn: null,
-    nextAction: "Monitor cron job reliability over 7-day window",
-    blocker: null,
-    lastUpdated: "2026-03-24"
+    next: "Monitor cron job reliability over 7-day window"
   },
   {
     id: 3,
     title: "Weekly Mission Brief",
     category: "Infrastructure",
     phase: "active",
-    desc: "Revised format: back to first Brief structure. Docx emailed to Chuck, MP to Obsidian. Must be readable and useful to a human. Produced Sunday 7PM PT.",
+    desc: "Revised format: back to first Brief structure. Docx emailed to Chuck, MP to Obsidian. Must be readable and useful to a human.",
     priority: 4,
     tokenEst: 5000,
     tokenActual: 1800,
     model: "Sonnet 4.6",
-    waitingOn: null,
-    nextAction: "Revise prompt template to match first-format spec",
-    blocker: null,
-    lastUpdated: "2026-03-24"
+    next: "Revise prompt template to match first-format spec"
   },
   {
     id: 4,
     title: "Grand Synthesis Corpus",
     category: "Grand Synthesis",
     phase: "scoped",
-    desc: "Build curated reference library of essential texts shaping Chuck's thinking. NotebookLM as platform. Refresher training, quizzes, reviews. Spark Reports from Counsel.",
+    desc: "Build curated reference library of essential texts shaping Chuck's thinking. NotebookLM as platform. Refresher training, quizzes, reviews.",
     priority: 4,
     tokenEst: 25000,
     tokenActual: 0,
-    model: "TBD — NotebookLM + Claude",
-    waitingOn: "Chuck to identify initial corpus texts",
-    nextAction: "Chuck provides first book list; Counsel sets up NotebookLM structure",
-    blocker: null,
-    lastUpdated: "2026-03-24"
+    model: "NotebookLM + Claude",
+    next: "Chuck provides first book list; Counsel sets up NotebookLM structure"
   },
   {
     id: 5,
     title: "Knowledge Consolidation Pipeline",
     category: "Knowledge",
     phase: "blocked",
-    desc: "OneNote migration, Readwise integration, Recall.ai notes, OneDrive/Drive reorganization. The full migration of Chuck's distributed intellectual assets into a coherent system.",
+    desc: "OneNote migration, Readwise integration, Recall.ai notes, OneDrive/Drive reorganization. Full migration of distributed intellectual assets.",
     priority: 3,
     tokenEst: 40000,
     tokenActual: 0,
     model: "Opus 4.6 + Sonnet 4.6",
-    waitingOn: "OZ stability confirmed; priority sequencing by Chuck",
-    nextAction: "Chuck decides which knowledge source to migrate first",
-    blocker: "Awaiting OZ reliability baseline before adding migration load",
-    lastUpdated: "2026-03-24"
+    next: "Chuck decides which knowledge source to migrate first"
   },
   {
     id: 6,
     title: "Video Funnel — YouTube Management",
     category: "Knowledge",
     phase: "concept",
-    desc: "System for managing, processing, and extracting value from YouTube videos Chuck watches. Includes Andrej Karpathy No Priors episode as first test case.",
+    desc: "System for managing, processing, and extracting value from YouTube videos Chuck watches. Includes Karpathy No Priors episode.",
     priority: 3,
     tokenEst: 10000,
     tokenActual: 0,
     model: "Sonnet 4.6",
-    waitingOn: "Scope definition with Counsel",
-    nextAction: "Define: what does 'managing' a video mean? Summarize, tag, extract insights?",
-    blocker: null,
-    lastUpdated: "2026-03-24"
+    next: "Chuck to identify initial corpus texts"
   },
   {
     id: 7,
@@ -1133,26 +1056,19 @@ const projects = [
     priority: 3,
     tokenEst: 12000,
     tokenActual: 0,
-    model: "Sonnet 4.6",
-    waitingOn: "OZ consolidation loop stability confirmed",
-    nextAction: "Review existing journal ingestion cron output",
-    blocker: null,
-    lastUpdated: "2026-03-24"
+    model: "Sonnet 4.6"
   },
   {
     id: 8,
     title: "Token Management & Economics",
     category: "Infrastructure",
     phase: "active",
-    desc: "Estimate and track token/cost allocation across projects. Rough budgeting, model selection guidance, spend visibility. This dashboard includes first implementation.",
+    desc: "Estimate and track token/cost allocation across projects. Rough budgeting, model selection guidance, spend visibility.",
     priority: 4,
     tokenEst: 4000,
     tokenActual: 1000,
     model: "Sonnet 4.6",
-    waitingOn: null,
-    nextAction: "Define per-project token estimate methodology",
-    blocker: null,
-    lastUpdated: "2026-03-24"
+    next: "Define per-project token estimate methodology"
   },
   {
     id: 9,
@@ -1163,11 +1079,7 @@ const projects = [
     priority: 2,
     tokenEst: 5000,
     tokenActual: 0,
-    model: "TBD",
-    waitingOn: "Prioritization by Chuck",
-    nextAction: "Scope session with Counsel",
-    blocker: null,
-    lastUpdated: "2026-03-24"
+    model: "TBD"
   },
   {
     id: 10,
@@ -1178,15 +1090,26 @@ const projects = [
     priority: 2,
     tokenEst: 3000,
     tokenActual: 0,
-    model: "Sonnet 4.6",
-    waitingOn: "Chuck's direction on purpose and audience",
-    nextAction: "Scoping conversation: what's this for?",
-    blocker: null,
-    lastUpdated: "2026-03-24"
+    model: "Sonnet 4.6"
   }
 ];
 
-// Utilities
+// Tab Navigation
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const targetTab = tab.dataset.tab;
+    
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    
+    document.querySelectorAll('.tab-content').forEach(content => {
+      content.classList.remove('active');
+    });
+    document.getElementById(targetTab).classList.add('active');
+  });
+});
+
+// Projects Tab Functions
 function priorityDots(n) {
   let html = '<span class="priority-indicator">';
   for (let i = 1; i <= 5; i++) {
@@ -1210,18 +1133,14 @@ function costEst(tokens, model) {
 
 function renderCard(p) {
   const phaseLabels = { 
-    concept: 'Concept', 
-    scoped: 'Scoped', 
-    testing: 'Testing',
-    active: 'Active', 
-    blocked: 'Blocked', 
-    complete: 'Complete', 
-    archived: 'Archived' 
+    concept: 'Concept', scoped: 'Scoped', testing: 'Testing',
+    active: 'Active', blocked: 'Blocked', complete: 'Complete'
   };
   const tokenPct = p.tokenEst > 0 ? Math.round((p.tokenActual / p.tokenEst) * 100) : 0;
 
   return `
   <div class="card ${p.phase}" data-phase="${p.phase}">
+    <div class="card-category">${p.category}</div>
     <div class="card-header">
       <div class="card-title">${p.title}</div>
       <div class="phase-badge">${phaseLabels[p.phase]}</div>
@@ -1229,108 +1148,49 @@ function renderCard(p) {
     <div class="card-desc">${p.desc}</div>
     <div class="card-meta">
       <div class="meta-row">
-        <span class="meta-key">Category</span>
-        <span class="meta-val">${p.category}</span>
-      </div>
-      <div class="meta-row">
         <span class="meta-key">Priority</span>
         <span class="meta-val">${priorityDots(p.priority)}</span>
       </div>
       <div class="meta-row">
         <span class="meta-key">Tokens</span>
-        <span class="meta-val">Est ~${p.tokenEst.toLocaleString()} · Actual ${p.tokenActual.toLocaleString()} (${tokenPct}%)</span>
+        <span class="meta-val">${p.tokenActual.toLocaleString()} / ${p.tokenEst.toLocaleString()} (${tokenPct}%)</span>
       </div>
       ${p.tokenEst > 0 ? tokenBar(p.tokenEst, p.tokenActual) : ''}
       <div class="meta-row">
-        <span class="meta-key">Est Cost</span>
+        <span class="meta-key">Cost</span>
         <span class="meta-val highlight">${costEst(p.tokenEst, p.model)}</span>
       </div>
       <div class="meta-row">
         <span class="meta-key">Model</span>
         <span class="meta-val">${p.model}</span>
       </div>
-      <div class="meta-row">
-        <span class="meta-key">Next</span>
-        <span class="meta-val ok">${p.nextAction}</span>
+      ${p.next ? `
+      <div class="meta-row" style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--border);">
+        <span class="meta-key" style="color: #6ee7b7;">Next</span>
+        <span class="meta-val ok" style="text-align: left;">${p.next}</span>
       </div>
-      ${p.waitingOn ? `<div class="meta-row"><span class="meta-key">Waiting</span><span class="meta-val">${p.waitingOn}</span></div>` : ''}
-      ${p.blocker ? `<div class="meta-row"><span class="meta-key">Blocker</span><span class="meta-val warn">${p.blocker}</span></div>` : ''}
-      <div class="meta-row">
-        <span class="meta-key">Updated</span>
-        <span class="meta-val">${p.lastUpdated}</span>
-      </div>
+      ` : ''}
     </div>
   </div>
   `;
 }
 
-// Render projects
 function loadProjects() {
-  const grid = document.getElementById('projects-grid');
-  grid.innerHTML = projects.map(renderCard).join('');
-  
-  // Update stats
-  const totalCost = projects.reduce((sum, p) => {
-    const rate = p.model.includes('Opus') ? 0.015 : 0.003;
-    return sum + (p.tokenEst / 1000) * rate;
-  }, 0);
-  
-  document.getElementById('total-projects').textContent = projects.length;
-  document.getElementById('active-count').textContent = projects.filter(p => p.phase === 'active').length;
-  document.getElementById('blocked-count').textContent = projects.filter(p => p.phase === 'blocked').length;
-  document.getElementById('total-cost').textContent = '$' + totalCost.toFixed(0);
+  document.getElementById('projects-grid').innerHTML = projects.map(renderCard).join('');
 }
 
-// Phase filtering
 document.querySelectorAll('.phase-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const phase = btn.dataset.phase;
-    
     document.querySelectorAll('.phase-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     
     document.querySelectorAll('.card').forEach(card => {
-      if (phase === 'all' || card.dataset.phase === phase) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
+      card.style.display = (phase === 'all' || card.dataset.phase === phase) ? 'block' : 'none';
     });
   });
 });
 
-// Tab switching
-document.querySelectorAll('.tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    const targetTab = tab.dataset.tab;
-    
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    
-    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-    document.getElementById(`${targetTab}-tab`).classList.add('active');
-  });
-});
-
-// Update timestamp
-function updateTimestamp() {
-  const now = new Date();
-  const options = { 
-    weekday: 'short', 
-    year: 'numeric', 
-    month: 'short', 
-    day: 'numeric', 
-    hour: '2-digit', 
-    minute: '2-digit',
-    timeZoneName: 'short'
-  };
-  document.getElementById('timestamp').textContent = now.toLocaleString('en-US', options);
-}
-
-updateTimestamp();
-setInterval(updateTimestamp, 60000);
-
-// Initialize
 loadProjects();
 </script>
 
