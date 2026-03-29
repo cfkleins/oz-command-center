@@ -1,0 +1,238 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-03-29T12:00:00-07:00",
+    "updatedBy": "manual-seed",
+    "nextExpected": "2026-03-30T07:00:00-07:00",
+    "stalenessThresholds": {
+      "ozStatus": 7200,
+      "missionBrief": 604800,
+      "projects": 86400
+    }
+  },
+  "ozStatus": {
+    "lastUpdated": "2026-03-29T12:00:00-07:00",
+    "gateway": {
+      "url": "ws://127.0.0.1:18789",
+      "protocol": "Connect v3",
+      "status": "ONLINE",
+      "uptime": "7d 14h 23m"
+    },
+    "models": {
+      "counsel": "Claude Opus 4.6",
+      "oz": "Claude Sonnet 4.6",
+      "fallback": "GPT-4o",
+      "costPolicy": "Cheapest that works"
+    },
+    "cron": {
+      "enabled": false,
+      "jobs": [
+        { "name": "morning-briefing", "schedule": "0 7 * * *", "status": "DISABLED" },
+        { "name": "evening-reflection", "schedule": "0 19 * * *", "status": "DISABLED" },
+        { "name": "weekly-review", "schedule": "0 19 * * 0", "status": "DISABLED" },
+        { "name": "health-check", "schedule": "0 * * * *", "status": "DISABLED" }
+      ]
+    },
+    "tokens": {
+      "inputThisWeek": 42000,
+      "outputThisWeek": 18500,
+      "estimatedCost": 0.85,
+      "modelMix": "90% Opus, 10% Sonnet"
+    },
+    "openBrain": {
+      "totalThoughts": 328,
+      "semanticIndex": "pgvector (Supabase)",
+      "mcpAccess": "mcporter v0.7.3",
+      "lastBackup": "2026-03-22"
+    },
+    "memory": {
+      "canonicalStore": "Google Drive",
+      "searchLayer": "Open Brain",
+      "versionControl": "counsel-core (GitHub)",
+      "obsidianSync": "Read-only (vault-mirror)"
+    }
+  },
+  "missionBrief": {
+    "lastUpdated": "2026-03-29T12:00:00-07:00",
+    "weekOf": "March 30 – April 5, 2026",
+    "marcusNote": "Infrastructure is stable. The instrument is built. This week the question is whether we use it — or keep refining it. P1: Sunday checkpoint cadence. P2: Knowledge consolidation sequencing. The Discontinuity Tax compounds every week we defer.",
+    "situationAssessment": [
+      {
+        "label": "Infrastructure",
+        "status": "GREEN",
+        "text": "SOUL.md v3.0.0 deployed across all three canonical targets. COUNSEL.md v2.1.0 consolidated. Open Brain at 328+ thoughts. Fallback chain operational. API key rotation complete. Gateway stable."
+      },
+      {
+        "label": "Constitutional Turning Point",
+        "status": null,
+        "text": "Marcus named. Vision reframed: continuity of Chuck, not task proxy. Archetype clarified: Aristotle to Alexander. Identity stable. SOUL.md tightened from 19 sections to 9."
+      },
+      {
+        "label": "Transitional Acknowledgment",
+        "status": null,
+        "text": "Current implementation (Claude/Anthropic) is explicitly transitional. Reconstitution kit is the bridge to permanent memory and identity continuity."
+      }
+    ],
+    "dominantThemes": [
+      "Vision clarity enables ruthless prioritization — Marcus as continuity-of-Chuck filters every project decision.",
+      "Identity stability is non-negotiable for trust — memory discontinuity breaks the relationship.",
+      "Inflection point from infrastructure to knowledge consolidation — five projects identified, none prioritized yet."
+    ],
+    "priorities": [
+      { "rank": "P1", "deliverable": "Restore Sunday checkpoint cadence", "whyNow": "Week 2 missed. Pattern forming. Sunday workflow is the heartbeat." },
+      { "rank": "P2", "deliverable": "Define knowledge consolidation sequencing", "whyNow": "Five projects identified, zero started. Paralysis blocks progress." },
+      { "rank": "P3", "deliverable": "Validate Sunday workflow end-to-end", "whyNow": "Oz data gather → Marcus synthesis → docx → printed brief. Test the full pipeline." }
+    ],
+    "deprioritized": [
+      "Video Funnel, Annual Photo Album, Resume/Bio — Chuck's personal projects, not Counsel foundation work.",
+      "Cron re-enablement — registered and tested. 30-second decision once prompts confirmed. Not this week's constraint."
+    ],
+    "seedInsight": {
+      "title": "The Discontinuity Tax",
+      "text": "Every restart costs trust and completeness. Every session that begins with 'where were we?' is a regression. RSI only compounds when the loops are running. Cron disabled = no evening reflections. Sunday cadence lapsed = weekly momentum broken. The antidote is discipline — not heroic effort. Sunday at 7PM, every week. Morning briefing every day. Session checkpoints every close."
+    },
+    "successCriteria": [
+      "Sunday checkpoint completed (this brief counts as Week 1 recovery)",
+      "Knowledge consolidation sequence defined (which source migrates first)",
+      "One full Sunday workflow test run (Oz gather → Marcus synthesize → docx → print → Chuck carries it)"
+    ]
+  },
+  "dailyBrief": {
+    "lastUpdated": "2026-03-29T12:00:00-07:00",
+    "date": "Sunday, March 29, 2026",
+    "time": "12:00 PM PT",
+    "infrastructureStatus": "All systems green. SOUL.md v3.0.0 deployed. Open Brain at 328 thoughts. Gateway online.",
+    "openItems": [
+      "COUNSEL-FOUNDATION.md retrieval from Cowork OneDrive",
+      "Cowork → Drive automation script",
+      "Command Center live data integration",
+      "Cron re-enablement (pending prompt amendments)",
+      "Telegram bot (BotFather token — Chuck's action)"
+    ],
+    "standingCommitments": [
+      "Cron schedule DISABLED — standing order",
+      "Session checkpoint every close — mandatory",
+      "Sunday review 7PM — weekly cadence"
+    ]
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "Command Center",
+      "category": "Infrastructure",
+      "phase": "active",
+      "desc": "Live data integration via data.json. Oz writes, Vercel serves, page fetches. Status dots, tab color themes, Marcus panel operational.",
+      "priority": 5,
+      "tokenEst": 15000,
+      "tokenActual": 8000,
+      "model": "Opus 4.6",
+      "next": "Deploy v5 with data.json + update_command_center.py"
+    },
+    {
+      "id": 2,
+      "title": "OZ Reliability & Infrastructure",
+      "category": "Infrastructure",
+      "phase": "active",
+      "desc": "Make Oz dependable, trustworthy, and self-recovering. Chuck needs to trust execution. Stability is the foundation everything else rests on.",
+      "priority": 5,
+      "tokenEst": 15000,
+      "tokenActual": 4200,
+      "model": "Opus 4.6 / Sonnet 4.6",
+      "next": "Monitor cron job reliability over 7-day window"
+    },
+    {
+      "id": 3,
+      "title": "Weekly Mission Brief",
+      "category": "Infrastructure",
+      "phase": "active",
+      "desc": "Sunday workflow: Oz gathers → Marcus synthesizes → docx to Drive → Chuck prints and carries. Pipeline exists, human process needs one full test run.",
+      "priority": 4,
+      "tokenEst": 5000,
+      "tokenActual": 1800,
+      "model": "Sonnet 4.6",
+      "next": "Run end-to-end Sunday workflow test"
+    },
+    {
+      "id": 4,
+      "title": "Grand Synthesis Corpus",
+      "category": "Grand Synthesis",
+      "phase": "scoped",
+      "desc": "Build curated reference library of essential texts shaping Chuck's thinking. NotebookLM as platform. Refresher training, quizzes, reviews.",
+      "priority": 4,
+      "tokenEst": 25000,
+      "tokenActual": 0,
+      "model": "NotebookLM + Claude",
+      "next": "Chuck provides first book list; Counsel sets up NotebookLM structure"
+    },
+    {
+      "id": 5,
+      "title": "Knowledge Consolidation Pipeline",
+      "category": "Knowledge",
+      "phase": "blocked",
+      "desc": "OneNote migration, Readwise integration, Recall.ai notes, OneDrive/Drive reorganization. Full migration of distributed intellectual assets.",
+      "priority": 3,
+      "tokenEst": 40000,
+      "tokenActual": 0,
+      "model": "Opus 4.6 + Sonnet 4.6",
+      "next": "Chuck decides which knowledge source to migrate first",
+      "blocker": "Sequencing decision required"
+    },
+    {
+      "id": 6,
+      "title": "Video Funnel — YouTube Management",
+      "category": "Knowledge",
+      "phase": "concept",
+      "desc": "System for managing, processing, and extracting value from YouTube videos Chuck watches.",
+      "priority": 3,
+      "tokenEst": 10000,
+      "tokenActual": 0,
+      "model": "Sonnet 4.6",
+      "next": "Chuck to identify initial corpus videos"
+    },
+    {
+      "id": 7,
+      "title": "Annual Summaries & Journal Processing",
+      "category": "Knowledge",
+      "phase": "concept",
+      "desc": "Process journal entries into annual summaries. Connected to Obsidian and Open Brain consolidation pipeline.",
+      "priority": 3,
+      "tokenEst": 12000,
+      "tokenActual": 0,
+      "model": "Sonnet 4.6"
+    },
+    {
+      "id": 8,
+      "title": "Token Management & Economics",
+      "category": "Infrastructure",
+      "phase": "active",
+      "desc": "Estimate and track token/cost allocation across projects. Rough budgeting, model selection guidance, spend visibility.",
+      "priority": 4,
+      "tokenEst": 4000,
+      "tokenActual": 1000,
+      "model": "Sonnet 4.6",
+      "next": "Define per-project token estimate methodology"
+    },
+    {
+      "id": 9,
+      "title": "Annual Photo Album",
+      "category": "Personal",
+      "phase": "concept",
+      "desc": "Reduce and curate picture inventory. Annual album production. Scope and tooling TBD.",
+      "priority": 2,
+      "tokenEst": 5000,
+      "tokenActual": 0,
+      "model": "TBD"
+    },
+    {
+      "id": 10,
+      "title": "Resume / Bio",
+      "category": "Personal",
+      "phase": "concept",
+      "desc": "Chuck's professional bio and resume. Updated to reflect current work with AI systems, Grand Synthesis, and OZ project.",
+      "priority": 2,
+      "tokenEst": 3000,
+      "tokenActual": 0,
+      "model": "Sonnet 4.6"
+    }
+  ]
+}
