@@ -1,9 +1,9 @@
 {
   "_meta": {
     "version": "1.0.0",
-    "lastUpdated": "2026-03-29T12:00:00-07:00",
-    "updatedBy": "manual-seed",
-    "nextExpected": "2026-03-30T07:00:00-07:00",
+    "lastUpdated": "2026-04-01T02:38:03+00:00",
+    "updatedBy": "oz-update-script",
+    "nextExpected": "2026-04-01T03:38:03Z",
     "stalenessThresholds": {
       "ozStatus": 7200,
       "missionBrief": 604800,
@@ -11,7 +11,7 @@
     }
   },
   "ozStatus": {
-    "lastUpdated": "2026-03-29T12:00:00-07:00",
+    "lastUpdated": "2026-04-01T02:38:03+00:00",
     "gateway": {
       "url": "ws://127.0.0.1:18789",
       "protocol": "Connect v3",
@@ -27,10 +27,26 @@
     "cron": {
       "enabled": false,
       "jobs": [
-        { "name": "morning-briefing", "schedule": "0 7 * * *", "status": "DISABLED" },
-        { "name": "evening-reflection", "schedule": "0 19 * * *", "status": "DISABLED" },
-        { "name": "weekly-review", "schedule": "0 19 * * 0", "status": "DISABLED" },
-        { "name": "health-check", "schedule": "0 * * * *", "status": "DISABLED" }
+        {
+          "name": "morning-briefing",
+          "schedule": "0 7 * * *",
+          "status": "DISABLED"
+        },
+        {
+          "name": "evening-reflection",
+          "schedule": "0 19 * * *",
+          "status": "DISABLED"
+        },
+        {
+          "name": "weekly-review",
+          "schedule": "0 19 * * 0",
+          "status": "DISABLED"
+        },
+        {
+          "name": "health-check",
+          "schedule": "0 * * * *",
+          "status": "DISABLED"
+        }
       ]
     },
     "tokens": {
@@ -79,9 +95,21 @@
       "Inflection point from infrastructure to knowledge consolidation — five projects identified, none prioritized yet."
     ],
     "priorities": [
-      { "rank": "P1", "deliverable": "Restore Sunday checkpoint cadence", "whyNow": "Week 2 missed. Pattern forming. Sunday workflow is the heartbeat." },
-      { "rank": "P2", "deliverable": "Define knowledge consolidation sequencing", "whyNow": "Five projects identified, zero started. Paralysis blocks progress." },
-      { "rank": "P3", "deliverable": "Validate Sunday workflow end-to-end", "whyNow": "Oz data gather → Marcus synthesis → docx → printed brief. Test the full pipeline." }
+      {
+        "rank": "P1",
+        "deliverable": "Restore Sunday checkpoint cadence",
+        "whyNow": "Week 2 missed. Pattern forming. Sunday workflow is the heartbeat."
+      },
+      {
+        "rank": "P2",
+        "deliverable": "Define knowledge consolidation sequencing",
+        "whyNow": "Five projects identified, zero started. Paralysis blocks progress."
+      },
+      {
+        "rank": "P3",
+        "deliverable": "Validate Sunday workflow end-to-end",
+        "whyNow": "Oz data gather → Marcus synthesis → docx → printed brief. Test the full pipeline."
+      }
     ],
     "deprioritized": [
       "Video Funnel, Annual Photo Album, Resume/Bio — Chuck's personal projects, not Counsel foundation work.",
@@ -98,10 +126,10 @@
     ]
   },
   "dailyBrief": {
-    "lastUpdated": "2026-03-29T12:00:00-07:00",
-    "date": "Sunday, March 29, 2026",
-    "time": "12:00 PM PT",
-    "infrastructureStatus": "All systems green. SOUL.md v3.0.0 deployed. Open Brain at 328 thoughts. Gateway online.",
+    "lastUpdated": "2026-04-01T02:38:03+00:00",
+    "date": "Tuesday, March 31, 2026",
+    "time": "7:38 PM PT",
+    "infrastructureStatus": "Gateway: ONLINE. Open Brain: 328 thoughts. All systems green.",
     "openItems": [
       "COUNSEL-FOUNDATION.md retrieval from Cowork OneDrive",
       "Cowork → Drive automation script",
