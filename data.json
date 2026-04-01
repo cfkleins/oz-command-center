@@ -1,8 +1,8 @@
 {
   "_meta": {
     "version": "1.0.0",
-    "lastUpdated": "2026-04-01T03:24:10+00:00",
-    "updatedBy": "oz-update-script",
+    "lastUpdated": "2026-04-01T03:44:13+00:00",
+    "updatedBy": "counsel-session-refresh",
     "nextExpected": "2026-04-01T04:24:10Z",
     "stalenessThresholds": {
       "ozStatus": 7200,
@@ -11,7 +11,7 @@
     }
   },
   "ozStatus": {
-    "lastUpdated": "2026-04-01T03:24:10+00:00",
+    "lastUpdated": "2026-04-01T03:44:13+00:00",
     "gateway": {
       "url": "ws://127.0.0.1:18789",
       "protocol": "Connect v3",
@@ -25,27 +25,33 @@
       "costPolicy": "Cheapest that works"
     },
     "cron": {
-      "enabled": false,
+      "enabled": true,
       "jobs": [
         {
           "name": "morning-briefing",
           "schedule": "0 7 * * *",
-          "status": "DISABLED"
+          "status": "OK",
+          "note": "Calendar integration added 2026-03-31"
+        },
+        {
+          "name": "journal-ingestion",
+          "schedule": "0 10 * * *",
+          "status": "OK"
         },
         {
           "name": "evening-reflection",
           "schedule": "0 19 * * *",
-          "status": "DISABLED"
+          "status": "OK"
         },
         {
           "name": "weekly-review",
           "schedule": "0 19 * * 0",
-          "status": "DISABLED"
+          "status": "OK"
         },
         {
-          "name": "health-check",
-          "schedule": "0 * * * *",
-          "status": "DISABLED"
+          "name": "cron-observability-logger",
+          "schedule": "hourly",
+          "status": "OK"
         }
       ]
     },
@@ -56,10 +62,10 @@
       "modelMix": "90% Opus, 10% Sonnet"
     },
     "openBrain": {
-      "totalThoughts": 328,
+      "totalThoughts": 429,
       "semanticIndex": "pgvector (Supabase)",
-      "mcpAccess": "mcporter v0.7.3",
-      "lastBackup": "2026-03-22"
+      "mcpAccess": "mcporter v0.7.3 + Supabase edge function",
+      "lastBackup": "2026-03-31"
     },
     "memory": {
       "canonicalStore": "Google Drive",
@@ -69,9 +75,9 @@
     }
   },
   "missionBrief": {
-    "lastUpdated": "2026-03-29T12:00:00-07:00",
-    "weekOf": "March 30 – April 5, 2026",
-    "marcusNote": "Infrastructure is stable. The instrument is built. This week the question is whether we use it — or keep refining it. P1: Sunday checkpoint cadence. P2: Knowledge consolidation sequencing. The Discontinuity Tax compounds every week we defer.",
+    "lastUpdated": "2026-03-31T20:00:00-07:00",
+    "weekOf": "March 31 – April 6, 2026",
+    "marcusNote": "Infrastructure sprint complete. All blockers cleared. Transition from building to operating. P1: Memory architecture document. P2: Calendar in morning briefing (done). P3: Proactive research skill. The brain before the mouth.",
     "situationAssessment": [
       {
         "label": "Infrastructure",
