@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": "1.0.0",
-    "lastUpdated": "2026-04-01T03:44:13+00:00",
+    "lastUpdated": "2026-04-01T03:44:51+00:00",
     "updatedBy": "counsel-session-refresh",
     "nextExpected": "2026-04-01T04:24:10Z",
     "stalenessThresholds": {
@@ -11,7 +11,7 @@
     }
   },
   "ozStatus": {
-    "lastUpdated": "2026-04-01T03:44:13+00:00",
+    "lastUpdated": "2026-04-01T03:44:51+00:00",
     "gateway": {
       "url": "ws://127.0.0.1:18789",
       "protocol": "Connect v3",
@@ -76,7 +76,7 @@
   },
   "missionBrief": {
     "lastUpdated": "2026-03-31T20:00:00-07:00",
-    "weekOf": "March 31 – April 6, 2026",
+    "weekOf": "March 31 - April 6, 2026",
     "marcusNote": "Infrastructure sprint complete. All blockers cleared. Transition from building to operating. P1: Memory architecture document. P2: Calendar in morning briefing (done). P3: Proactive research skill. The brain before the mouth.",
     "situationAssessment": [
       {
