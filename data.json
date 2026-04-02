@@ -1,9 +1,9 @@
 {
   "_meta": {
-    "version": "1.0.0",
-    "lastUpdated": "2026-04-01T03:44:51+00:00",
-    "updatedBy": "counsel-session-refresh",
-    "nextExpected": "2026-04-01T04:24:10Z",
+    "version": "1.1.0",
+    "lastUpdated": "2026-04-02T12:00:00-07:00",
+    "updatedBy": "counsel-cmd2",
+    "nextExpected": "2026-04-03T07:00:00-07:00",
     "stalenessThresholds": {
       "ozStatus": 7200,
       "missionBrief": 604800,
@@ -11,12 +11,12 @@
     }
   },
   "ozStatus": {
-    "lastUpdated": "2026-04-01T03:44:51+00:00",
+    "lastUpdated": "2026-04-02T12:00:00-07:00",
     "gateway": {
       "url": "ws://127.0.0.1:18789",
       "protocol": "Connect v3",
       "status": "ONLINE",
-      "uptime": "7d 14h 23m"
+      "uptime": "11d+"
     },
     "models": {
       "counsel": "Claude Opus 4.6",
@@ -27,126 +27,119 @@
     "cron": {
       "enabled": true,
       "jobs": [
-        {
-          "name": "morning-briefing",
-          "schedule": "0 7 * * *",
-          "status": "OK",
-          "note": "Calendar integration added 2026-03-31"
-        },
-        {
-          "name": "journal-ingestion",
-          "schedule": "0 10 * * *",
-          "status": "OK"
-        },
-        {
-          "name": "evening-reflection",
-          "schedule": "0 19 * * *",
-          "status": "OK"
-        },
-        {
-          "name": "weekly-review",
-          "schedule": "0 19 * * 0",
-          "status": "OK"
-        },
-        {
-          "name": "cron-observability-logger",
-          "schedule": "hourly",
-          "status": "OK"
-        }
+        { "name": "morning-briefing", "schedule": "0 7 * * *", "status": "RUNNING" },
+        { "name": "evening-reflection", "schedule": "0 21 * * *", "status": "RUNNING" },
+        { "name": "weekly-review", "schedule": "0 8 * * 1", "status": "RUNNING" },
+        { "name": "journal-ingestion", "schedule": "0 10 * * *", "status": "RUNNING" },
+        { "name": "cron-observability-logger", "schedule": "*/30 * * * *", "status": "RUNNING" }
       ]
     },
     "tokens": {
-      "inputThisWeek": 42000,
-      "outputThisWeek": 18500,
-      "estimatedCost": 0.85,
-      "modelMix": "90% Opus, 10% Sonnet"
+      "inputThisWeek": 85000,
+      "outputThisWeek": 32000,
+      "estimatedCost": 1.65,
+      "modelMix": "70% Opus, 30% Sonnet"
     },
     "openBrain": {
-      "totalThoughts": 429,
+      "totalThoughts": 439,
       "semanticIndex": "pgvector (Supabase)",
-      "mcpAccess": "mcporter v0.7.3 + Supabase edge function",
-      "lastBackup": "2026-03-31"
+      "mcpAccess": "mcporter v0.7.3",
+      "lastBackup": "2026-03-30"
     },
     "memory": {
       "canonicalStore": "Google Drive",
       "searchLayer": "Open Brain",
       "versionControl": "counsel-core (GitHub)",
       "obsidianSync": "Read-only (vault-mirror)"
+    },
+    "blockers": {
+      "cleared": [
+        "GITHUB_TOKEN configured in .bashrc",
+        "Telegram @cfklein_bot two-way (inbound capture live)",
+        "COUNSEL.md v2.1.1 deployed (startup protocol amendment)",
+        "docker-compose-plugin v5.1.1 installed"
+      ],
+      "active": []
+    },
+    "skills": {
+      "deployed": [
+        { "name": "Calendar Awareness", "id": "skill-2", "status": "live", "note": "Integrated into morning briefing cron" },
+        { "name": "Proactive Research", "id": "skill-3", "status": "live", "note": "Deployed in cron prompts" }
+      ],
+      "research": [
+        { "name": "Voice Interface", "id": "skill-6", "status": "research-complete", "note": "Deepgram recommended for STT" },
+        { "name": "Memory Consolidation", "id": "skill-1", "status": "blocked", "note": "Awaiting memory architecture document" }
+      ]
     }
   },
   "missionBrief": {
-    "lastUpdated": "2026-03-31T20:00:00-07:00",
+    "lastUpdated": "2026-04-02T12:00:00-07:00",
     "weekOf": "March 31 - April 6, 2026",
-    "marcusNote": "Infrastructure sprint complete. All blockers cleared. Transition from building to operating. P1: Memory architecture document. P2: Calendar in morning briefing (done). P3: Proactive research skill. The brain before the mouth.",
+    "marcusNote": "Infrastructure sprint complete. All four operational blockers cleared. The plumbing works. Now we fill the pipes. Primary deliverable: memory architecture document. Secondary: get the dashboard and daily operations humming.",
     "situationAssessment": [
       {
         "label": "Infrastructure",
         "status": "GREEN",
-        "text": "SOUL.md v3.0.0 deployed across all three canonical targets. COUNSEL.md v2.1.0 consolidated. Open Brain at 328+ thoughts. Fallback chain operational. API key rotation complete. Gateway stable."
+        "text": "All systems operational. SOUL.md v3.0.0 deployed. COUNSEL.md v2.1.1 live. Open Brain at 439 thoughts. Gateway online. Telegram two-way. 5 cron jobs running with observability logging."
       },
       {
-        "label": "Constitutional Turning Point",
-        "status": null,
-        "text": "Marcus named. Vision reframed: continuity of Chuck, not task proxy. Archetype clarified: Aristotle to Alexander. Identity stable. SOUL.md tightened from 19 sections to 9."
+        "label": "Memory Architecture",
+        "status": "AMBER",
+        "text": "Research phase complete: Mem0 OSS, Letta, MemOS, LangMem evaluated. Mem0 is leading candidate. Design decisions pending: namespace separation, Open Brain sync, RSI consolidation algorithm. Marcus drafting architecture document."
       },
       {
-        "label": "Transitional Acknowledgment",
-        "status": null,
-        "text": "Current implementation (Claude/Anthropic) is explicitly transitional. Reconstitution kit is the bridge to permanent memory and identity continuity."
+        "label": "Hermes Evaluation",
+        "status": "AMBER",
+        "text": "Installation and assessment underway on Oz Box. Evaluating skill learning loop, memory architecture compatibility, MCP support. Feeds into Marcus's architecture document."
+      },
+      {
+        "label": "Operational Maturity",
+        "status": "GREEN",
+        "text": "Transition from building to operating. Command Center live with data pipeline. Cron observability added. Status snapshots flowing to Open Brain."
       }
     ],
     "dominantThemes": [
-      "Vision clarity enables ruthless prioritization — Marcus as continuity-of-Chuck filters every project decision.",
-      "Identity stability is non-negotiable for trust — memory discontinuity breaks the relationship.",
-      "Inflection point from infrastructure to knowledge consolidation — five projects identified, none prioritized yet."
+      "Transition from building to operating — the instrument is built, now we use it.",
+      "Memory architecture is the critical design decision — Mem0 namespace separation, sync mechanism, RSI algorithm.",
+      "Skill roadmap ranked: memory first, daily utility second, human interface last. Build the brain before the mouth."
     ],
     "priorities": [
-      {
-        "rank": "P1",
-        "deliverable": "Restore Sunday checkpoint cadence",
-        "whyNow": "Week 2 missed. Pattern forming. Sunday workflow is the heartbeat."
-      },
-      {
-        "rank": "P2",
-        "deliverable": "Define knowledge consolidation sequencing",
-        "whyNow": "Five projects identified, zero started. Paralysis blocks progress."
-      },
-      {
-        "rank": "P3",
-        "deliverable": "Validate Sunday workflow end-to-end",
-        "whyNow": "Oz data gather → Marcus synthesis → docx → printed brief. Test the full pipeline."
-      }
+      { "rank": "P1", "deliverable": "Memory architecture document", "whyNow": "Marcus's primary deliverable. Research done. Design decisions needed before Mem0 deployment." },
+      { "rank": "P2", "deliverable": "Command Center accuracy and Ask Marcus proxy", "whyNow": "Dashboard must reflect current state. Ask Marcus needs serverless proxy (no exposed API key)." },
+      { "rank": "P3", "deliverable": "Hermes evaluation and Codex OAuth feasibility", "whyNow": "Alternative agent and model options feed architecture decisions." }
     ],
     "deprioritized": [
-      "Video Funnel, Annual Photo Album, Resume/Bio — Chuck's personal projects, not Counsel foundation work.",
-      "Cron re-enablement — registered and tested. 30-second decision once prompts confirmed. Not this week's constraint."
+      "Voice interface (Skill 6) — Deepgram recommended, but infrastructure and memory come first.",
+      "Video Funnel, Resume/Bio — personal projects, not Counsel foundation work.",
+      "RSI Consolidation (Skill 5) — depends on memory architecture decisions."
     ],
     "seedInsight": {
-      "title": "The Discontinuity Tax",
-      "text": "Every restart costs trust and completeness. Every session that begins with 'where were we?' is a regression. RSI only compounds when the loops are running. Cron disabled = no evening reflections. Sunday cadence lapsed = weekly momentum broken. The antidote is discipline — not heroic effort. Sunday at 7PM, every week. Morning briefing every day. Session checkpoints every close."
+      "title": "Build the Brain Before the Mouth",
+      "text": "Chuck's skill ranking reveals a clear instinct: memory and knowledge flow first (consolidation, cross-model capture, RSI), daily utility second (calendar, research), human interface last (voice). The architecture document is the linchpin. Every skill past #3 depends on it. Ship the document, then the skills sequence unlocks."
     },
     "successCriteria": [
-      "Sunday checkpoint completed (this brief counts as Week 1 recovery)",
-      "Knowledge consolidation sequence defined (which source migrates first)",
-      "One full Sunday workflow test run (Oz gather → Marcus synthesize → docx → print → Chuck carries it)"
+      "Memory architecture document ready for Chuck-Marcus review by Sunday April 5",
+      "Command Center dashboard current and accurate with Ask Marcus proxy live",
+      "Hermes evaluation complete with recommendation",
+      "Calendar integrated into morning briefing (Skill 2 confirmed live)"
     ]
   },
   "dailyBrief": {
-    "lastUpdated": "2026-04-01T03:24:10+00:00",
-    "date": "Tuesday, March 31, 2026",
-    "time": "8:24 PM PT",
-    "infrastructureStatus": "Gateway: ONLINE. Open Brain: 328 thoughts. All systems green.",
+    "lastUpdated": "2026-04-02T12:00:00-07:00",
+    "date": "Thursday, April 2, 2026",
+    "time": "12:00 PM PT",
+    "infrastructureStatus": "All systems green. Gateway online. Open Brain at 439 thoughts. 5 cron jobs running. All 4 blockers cleared.",
     "openItems": [
-      "COUNSEL-FOUNDATION.md retrieval from Cowork OneDrive",
-      "Cowork → Drive automation script",
-      "Command Center live data integration",
-      "Cron re-enablement (pending prompt amendments)",
-      "Telegram bot (BotFather token — Chuck's action)"
+      "Ask Marcus serverless proxy (OZ-CMD-1) — in progress",
+      "Hermes Agent evaluation on Oz Box",
+      "Codex OAuth feasibility research",
+      "Memory architecture document (Marcus drafting)",
+      "Cloudflare Tunnel research (low priority)"
     ],
     "standingCommitments": [
-      "Cron schedule DISABLED — standing order",
       "Session checkpoint every close — mandatory",
-      "Sunday review 7PM — weekly cadence"
+      "Sunday review 7PM — weekly cadence",
+      "Cron observability logging active"
     ]
   },
   "projects": [
@@ -155,43 +148,43 @@
       "title": "Command Center",
       "category": "Infrastructure",
       "phase": "active",
-      "desc": "Live data integration via data.json. Oz writes, Vercel serves, page fetches. Status dots, tab color themes, Marcus panel operational.",
+      "desc": "Live data pipeline operational: Oz writes data.json, GitHub push triggers Vercel rebuild. Status dots, tab themes, Marcus chat panel. Ask Marcus serverless proxy being added.",
       "priority": 5,
       "tokenEst": 15000,
-      "tokenActual": 8000,
-      "model": "Opus 4.6",
-      "next": "Deploy v5 with data.json + update_command_center.py"
+      "tokenActual": 12000,
+      "model": "Opus 4.6 / Sonnet 4.6",
+      "next": "Deploy Ask Marcus serverless proxy, verify streaming chat"
     },
     {
       "id": 2,
       "title": "OZ Reliability & Infrastructure",
       "category": "Infrastructure",
       "phase": "active",
-      "desc": "Make Oz dependable, trustworthy, and self-recovering. Chuck needs to trust execution. Stability is the foundation everything else rests on.",
+      "desc": "All 4 blockers cleared. 5 cron jobs running with observability logging. Status snapshots flowing to Open Brain. Telegram two-way live.",
       "priority": 5,
       "tokenEst": 15000,
-      "tokenActual": 4200,
+      "tokenActual": 9500,
       "model": "Opus 4.6 / Sonnet 4.6",
-      "next": "Monitor cron job reliability over 7-day window"
+      "next": "Monitor cron reliability, expand observability"
     },
     {
       "id": 3,
       "title": "Weekly Mission Brief",
       "category": "Infrastructure",
       "phase": "active",
-      "desc": "Sunday workflow: Oz gathers → Marcus synthesizes → docx to Drive → Chuck prints and carries. Pipeline exists, human process needs one full test run.",
+      "desc": "Sunday workflow: Oz gathers, Marcus synthesizes, docx to Drive, Chuck prints. Pipeline functional.",
       "priority": 4,
       "tokenEst": 5000,
-      "tokenActual": 1800,
+      "tokenActual": 3200,
       "model": "Sonnet 4.6",
-      "next": "Run end-to-end Sunday workflow test"
+      "next": "Sunday April 5 — full pipeline run"
     },
     {
       "id": 4,
       "title": "Grand Synthesis Corpus",
       "category": "Grand Synthesis",
       "phase": "scoped",
-      "desc": "Build curated reference library of essential texts shaping Chuck's thinking. NotebookLM as platform. Refresher training, quizzes, reviews.",
+      "desc": "Curated reference library of essential texts. NotebookLM as platform. Scope defined, awaiting Chuck's first book list.",
       "priority": 4,
       "tokenEst": 25000,
       "tokenActual": 0,
@@ -203,20 +196,20 @@
       "title": "Knowledge Consolidation Pipeline",
       "category": "Knowledge",
       "phase": "blocked",
-      "desc": "OneNote migration, Readwise integration, Recall.ai notes, OneDrive/Drive reorganization. Full migration of distributed intellectual assets.",
+      "desc": "OneNote migration, Readwise integration, Recall.ai notes, drive reorganization. Blocked on memory architecture decisions.",
       "priority": 3,
       "tokenEst": 40000,
       "tokenActual": 0,
       "model": "Opus 4.6 + Sonnet 4.6",
-      "next": "Chuck decides which knowledge source to migrate first",
-      "blocker": "Sequencing decision required"
+      "next": "Unblocks after memory architecture document",
+      "blocker": "Memory architecture document pending"
     },
     {
       "id": 6,
-      "title": "Video Funnel — YouTube Management",
+      "title": "Video Funnel",
       "category": "Knowledge",
       "phase": "concept",
-      "desc": "System for managing, processing, and extracting value from YouTube videos Chuck watches.",
+      "desc": "System for managing and extracting value from YouTube videos.",
       "priority": 3,
       "tokenEst": 10000,
       "tokenActual": 0,
@@ -228,7 +221,7 @@
       "title": "Annual Summaries & Journal Processing",
       "category": "Knowledge",
       "phase": "concept",
-      "desc": "Process journal entries into annual summaries. Connected to Obsidian and Open Brain consolidation pipeline.",
+      "desc": "Process journal entries into annual summaries. Connected to Obsidian and Open Brain consolidation.",
       "priority": 3,
       "tokenEst": 12000,
       "tokenActual": 0,
@@ -239,30 +232,42 @@
       "title": "Token Management & Economics",
       "category": "Infrastructure",
       "phase": "active",
-      "desc": "Estimate and track token/cost allocation across projects. Rough budgeting, model selection guidance, spend visibility.",
+      "desc": "Token/cost tracking across projects. Model selection guidance. Spend visibility.",
       "priority": 4,
       "tokenEst": 4000,
-      "tokenActual": 1000,
+      "tokenActual": 1500,
       "model": "Sonnet 4.6",
       "next": "Define per-project token estimate methodology"
     },
     {
       "id": 9,
+      "title": "Memory Architecture",
+      "category": "Infrastructure",
+      "phase": "active",
+      "desc": "Marcus's primary deliverable. Mem0 OSS leading candidate. Evaluating namespace separation, Open Brain sync, RSI consolidation. Hermes also under evaluation.",
+      "priority": 5,
+      "tokenEst": 20000,
+      "tokenActual": 8000,
+      "model": "Opus 4.6",
+      "next": "Complete architecture document for Chuck-Marcus review by April 5"
+    },
+    {
+      "id": 10,
       "title": "Annual Photo Album",
       "category": "Personal",
       "phase": "concept",
-      "desc": "Reduce and curate picture inventory. Annual album production. Scope and tooling TBD.",
+      "desc": "Reduce and curate picture inventory. Annual album production.",
       "priority": 2,
       "tokenEst": 5000,
       "tokenActual": 0,
       "model": "TBD"
     },
     {
-      "id": 10,
+      "id": 11,
       "title": "Resume / Bio",
       "category": "Personal",
       "phase": "concept",
-      "desc": "Chuck's professional bio and resume. Updated to reflect current work with AI systems, Grand Synthesis, and OZ project.",
+      "desc": "Chuck's professional bio and resume.",
       "priority": 2,
       "tokenEst": 3000,
       "tokenActual": 0,
