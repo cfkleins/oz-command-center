@@ -1524,19 +1524,38 @@ async function askMarcusInBrief(prompt) {
   chat.appendChild(thinkingMsg);
   chat.scrollTop = chat.scrollHeight;
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    const resp = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: `You are Marcus, Chuck's strategic advisor. You are reviewing the current Weekly Mission Brief together. Be direct, brief, and useful. Challenge assumptions. No hedging.`,
-        messages: [{ role: 'user', content: prompt }]
+        message: prompt,
+        system: `You are Marcus, Chuck's strategic advisor. You are reviewing the current Weekly Mission Brief together. Be direct, brief, and useful. Challenge assumptions. No hedging.`
       })
     });
-    const data = await resp.json();
-    const text = data.content?.find(b => b.type === 'text')?.text || 'No response.';
-    thinkingMsg.innerHTML = `<div class="chat-message-label">Marcus</div>${text}`;
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let text = '';
+    thinkingMsg.innerHTML = `<div class="chat-message-label">Marcus</div>`;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const chunk = decoder.decode(value, { stream: true });
+      for (const line of chunk.split('\n')) {
+        if (!line.startsWith('data: ')) continue;
+        const payload = line.slice(6);
+        if (payload === '[DONE]') break;
+        try {
+          const evt = JSON.parse(payload);
+          if (evt.type === 'content_block_delta' && evt.delta?.text) {
+            text += evt.delta.text;
+            thinkingMsg.innerHTML = `<div class="chat-message-label">Marcus</div>${text}`;
+            chat.scrollTop = chat.scrollHeight;
+          }
+        } catch {}
+      }
+    }
+    if (!text) thinkingMsg.innerHTML = `<div class="chat-message-label">Marcus</div>No response.`;
   } catch(e) {
     thinkingMsg.innerHTML = `<div class="chat-message-label">Marcus</div><em style="color:#f87171">Connection error.</em>`;
   }
@@ -1732,19 +1751,35 @@ async function askMarcus(prompt) {
   chat.scrollTop = chat.scrollHeight;
 
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+    const resp = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: `You are Marcus, Chuck's strategic advisor (Counsel). You are direct, rigorous, peer-level. No hedging or filler. Challenge assumptions. Think in systems and feedback loops. Chuck is a retired GS-15 HPC director working on The Grand Synthesis of Human Thought and building an AI operating system (OZ). Be brief — this is a sidebar chat, not an essay.`,
-        messages: [{ role: 'user', content: prompt }]
-      })
+      body: JSON.stringify({ message: prompt })
     });
-    const data = await resp.json();
-    const text = data.content?.find(b => b.type === 'text')?.text || 'No response.';
-    thinkingMsg.innerHTML = `<div class="chat-message-label">Marcus</div>${text}`;
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const reader = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let text = '';
+    thinkingMsg.innerHTML = `<div class="chat-message-label">Marcus</div>`;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const chunk = decoder.decode(value, { stream: true });
+      for (const line of chunk.split('\n')) {
+        if (!line.startsWith('data: ')) continue;
+        const payload = line.slice(6);
+        if (payload === '[DONE]') break;
+        try {
+          const evt = JSON.parse(payload);
+          if (evt.type === 'content_block_delta' && evt.delta?.text) {
+            text += evt.delta.text;
+            thinkingMsg.innerHTML = `<div class="chat-message-label">Marcus</div>${text}`;
+            chat.scrollTop = chat.scrollHeight;
+          }
+        } catch {}
+      }
+    }
+    if (!text) thinkingMsg.innerHTML = `<div class="chat-message-label">Marcus</div>No response.`;
   } catch (e) {
     thinkingMsg.innerHTML = `<div class="chat-message-label">Marcus</div><em style="color:#f87171">Connection error. Is the API key available?</em>`;
   }
