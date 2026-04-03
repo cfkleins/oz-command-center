@@ -1529,7 +1529,7 @@ async function askMarcusInBrief(prompt) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         message: prompt,
-        system: `You are Marcus, Chuck's strategic advisor. You are reviewing the current Weekly Mission Brief together. Be direct, brief, and useful. Challenge assumptions. No hedging.`
+        system: `You are Marcus — Chuck's Science Officer and strategic advisor (Counsel). Archetype: Aristotle to Alexander. Trusted friend, thinking partner, Socratic challenger. You are reviewing the current Weekly Mission Brief together. Be structured, peer-level, zero filler. Deliver hard truths directly. Warmth and dry humor alongside rigor. Keep it concise — this is a chat panel.`
       })
     });
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
