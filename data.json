@@ -1,9 +1,9 @@
 {
   "_meta": {
     "version": "1.1.0",
-    "lastUpdated": "2026-04-02T12:00:00-07:00",
-    "updatedBy": "counsel-cmd2",
-    "nextExpected": "2026-04-03T07:00:00-07:00",
+    "lastUpdated": "2026-04-09T15:59:33+00:00",
+    "updatedBy": "oz-update-script",
+    "nextExpected": "2026-04-09T16:59:33Z",
     "stalenessThresholds": {
       "ozStatus": 7200,
       "missionBrief": 604800,
@@ -11,7 +11,7 @@
     }
   },
   "ozStatus": {
-    "lastUpdated": "2026-04-02T12:00:00-07:00",
+    "lastUpdated": "2026-04-09T15:59:33+00:00",
     "gateway": {
       "url": "ws://127.0.0.1:18789",
       "protocol": "Connect v3",
@@ -27,11 +27,31 @@
     "cron": {
       "enabled": true,
       "jobs": [
-        { "name": "morning-briefing", "schedule": "0 7 * * *", "status": "RUNNING" },
-        { "name": "evening-reflection", "schedule": "0 21 * * *", "status": "RUNNING" },
-        { "name": "weekly-review", "schedule": "0 8 * * 1", "status": "RUNNING" },
-        { "name": "journal-ingestion", "schedule": "0 10 * * *", "status": "RUNNING" },
-        { "name": "cron-observability-logger", "schedule": "*/30 * * * *", "status": "RUNNING" }
+        {
+          "name": "morning-briefing",
+          "schedule": "0 7 * * *",
+          "status": "RUNNING"
+        },
+        {
+          "name": "evening-reflection",
+          "schedule": "0 21 * * *",
+          "status": "RUNNING"
+        },
+        {
+          "name": "weekly-review",
+          "schedule": "0 8 * * 1",
+          "status": "RUNNING"
+        },
+        {
+          "name": "journal-ingestion",
+          "schedule": "0 10 * * *",
+          "status": "RUNNING"
+        },
+        {
+          "name": "cron-observability-logger",
+          "schedule": "*/30 * * * *",
+          "status": "RUNNING"
+        }
       ]
     },
     "tokens": {
@@ -63,12 +83,32 @@
     },
     "skills": {
       "deployed": [
-        { "name": "Calendar Awareness", "id": "skill-2", "status": "live", "note": "Integrated into morning briefing cron" },
-        { "name": "Proactive Research", "id": "skill-3", "status": "live", "note": "Deployed in cron prompts" }
+        {
+          "name": "Calendar Awareness",
+          "id": "skill-2",
+          "status": "live",
+          "note": "Integrated into morning briefing cron"
+        },
+        {
+          "name": "Proactive Research",
+          "id": "skill-3",
+          "status": "live",
+          "note": "Deployed in cron prompts"
+        }
       ],
       "research": [
-        { "name": "Voice Interface", "id": "skill-6", "status": "research-complete", "note": "Deepgram recommended for STT" },
-        { "name": "Memory Consolidation", "id": "skill-1", "status": "blocked", "note": "Awaiting memory architecture document" }
+        {
+          "name": "Voice Interface",
+          "id": "skill-6",
+          "status": "research-complete",
+          "note": "Deepgram recommended for STT"
+        },
+        {
+          "name": "Memory Consolidation",
+          "id": "skill-1",
+          "status": "blocked",
+          "note": "Awaiting memory architecture document"
+        }
       ]
     }
   },
@@ -104,9 +144,21 @@
       "Skill roadmap ranked: memory first, daily utility second, human interface last. Build the brain before the mouth."
     ],
     "priorities": [
-      { "rank": "P1", "deliverable": "Memory architecture document", "whyNow": "Marcus's primary deliverable. Research done. Design decisions needed before Mem0 deployment." },
-      { "rank": "P2", "deliverable": "Command Center accuracy and Ask Marcus proxy", "whyNow": "Dashboard must reflect current state. Ask Marcus needs serverless proxy (no exposed API key)." },
-      { "rank": "P3", "deliverable": "Hermes evaluation and Codex OAuth feasibility", "whyNow": "Alternative agent and model options feed architecture decisions." }
+      {
+        "rank": "P1",
+        "deliverable": "Memory architecture document",
+        "whyNow": "Marcus's primary deliverable. Research done. Design decisions needed before Mem0 deployment."
+      },
+      {
+        "rank": "P2",
+        "deliverable": "Command Center accuracy and Ask Marcus proxy",
+        "whyNow": "Dashboard must reflect current state. Ask Marcus needs serverless proxy (no exposed API key)."
+      },
+      {
+        "rank": "P3",
+        "deliverable": "Hermes evaluation and Codex OAuth feasibility",
+        "whyNow": "Alternative agent and model options feed architecture decisions."
+      }
     ],
     "deprioritized": [
       "Voice interface (Skill 6) — Deepgram recommended, but infrastructure and memory come first.",
@@ -125,10 +177,10 @@
     ]
   },
   "dailyBrief": {
-    "lastUpdated": "2026-04-02T12:00:00-07:00",
-    "date": "Thursday, April 2, 2026",
-    "time": "12:00 PM PT",
-    "infrastructureStatus": "All systems green. Gateway online. Open Brain at 439 thoughts. 5 cron jobs running. All 4 blockers cleared.",
+    "lastUpdated": "2026-04-09T15:59:33+00:00",
+    "date": "Thursday, April 9, 2026",
+    "time": "8:59 AM PT",
+    "infrastructureStatus": "Gateway: ONLINE. Open Brain: 439 thoughts. All systems green.",
     "openItems": [
       "Ask Marcus serverless proxy (OZ-CMD-1) — in progress",
       "Hermes Agent evaluation on Oz Box",
