@@ -25,6 +25,7 @@
     --active: #276749;
     --blocked: #742a2a;
     --complete: #234e52;
+    --accent-amber: #ecc94b;
     --status-green: #48bb78;
     --status-yellow: #ecc94b;
     --status-red: #f56565;
@@ -121,6 +122,10 @@
   .nav-tab[data-tab="oz-status"].active {
     color: var(--accent-red);
     border-bottom-color: var(--accent-red);
+  }
+  .nav-tab[data-tab="cost"].active {
+    color: var(--accent-amber);
+    border-bottom-color: var(--accent-amber);
   }
 
   /* Tab-level status dots in nav */
@@ -1042,6 +1047,292 @@
     50% { opacity: 1; transform: scale(1); }
   }
 
+  /* ══════════════════════════════════════
+     COST TAB (AMBER)
+  ══════════════════════════════════════ */
+
+  .page-title.amber { color: var(--accent-amber); }
+  .tab-page-header.amber { border-left: 3px solid var(--accent-amber); }
+
+  .cost-tab-layout {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    padding: 2rem 2.5rem;
+  }
+
+  .cost-stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cost-stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    text-align: center;
+  }
+
+  .cost-stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+
+  .cost-stat-value {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.8rem;
+    color: var(--text);
+  }
+
+  .cost-stat-value.amber { color: var(--accent-amber); }
+  .cost-stat-value.green { color: var(--status-green); }
+  .cost-stat-value.red { color: var(--status-red); }
+
+  .cost-stat-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    margin-top: 0.25rem;
+  }
+
+  .cost-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cost-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  .cost-panel-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--accent-amber);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Daily cost chart */
+  .cost-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 180px;
+    padding: 0.5rem 0;
+  }
+
+  .cost-bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    height: 100%;
+    justify-content: flex-end;
+  }
+
+  .cost-bar-stack {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    border-radius: 2px 2px 0 0;
+    overflow: hidden;
+    max-width: 28px;
+  }
+
+  .cost-bar-segment {
+    width: 100%;
+    min-height: 1px;
+    transition: height 0.3s;
+  }
+
+  .cost-bar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.5rem;
+    color: var(--text-dim);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    max-height: 50px;
+    overflow: hidden;
+  }
+
+  .cost-bar-group:hover .cost-bar-stack {
+    outline: 1px solid var(--accent-amber);
+    outline-offset: 1px;
+  }
+
+  .cost-bar-group:hover .cost-bar-label {
+    color: var(--text-muted);
+  }
+
+  .cost-bar-tooltip {
+    display: none;
+    position: absolute;
+    background: var(--surface2);
+    border: 1px solid var(--accent-amber);
+    border-radius: 4px;
+    padding: 0.4rem 0.6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text);
+    z-index: 100;
+    white-space: nowrap;
+  }
+
+  /* Budget bar */
+  .budget-bar-container {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .budget-bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .budget-bar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .budget-bar-track {
+    height: 8px;
+    background: var(--surface2);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .budget-bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--status-green);
+    transition: width 0.5s ease;
+  }
+
+  .budget-bar-fill.warning { background: var(--status-yellow); }
+  .budget-bar-fill.danger { background: var(--status-red); }
+
+  .budget-bar-projected {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: var(--accent-amber);
+    opacity: 0.8;
+  }
+
+  /* Model breakdown */
+  .model-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+  }
+  .model-row:last-child { border-bottom: none; }
+
+  .model-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .model-color-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .model-cost {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent-amber);
+  }
+
+  .model-pct {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    min-width: 40px;
+    text-align: right;
+  }
+
+  /* Pro tier section */
+  .pro-tier-section {
+    margin-top: 1.5rem;
+  }
+
+  .cost-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+  }
+  .cost-info-row:last-child { border-bottom: none; }
+  .cost-info-key { color: var(--text-dim); }
+  .cost-info-val { color: var(--text-muted); }
+
+  .cost-how-to {
+    margin-top: 1.5rem;
+    background: rgba(236,201,75,0.05);
+    border: 1px solid rgba(236,201,75,0.15);
+    border-radius: 6px;
+    padding: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+
+  .cost-how-to strong {
+    color: var(--accent-amber);
+    font-weight: 500;
+  }
+
+  /* Alert zone */
+  .cost-alert {
+    background: rgba(245,101,101,0.08);
+    border: 1px solid rgba(245,101,101,0.3);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: #f87171;
+    margin-bottom: 1rem;
+    display: none;
+  }
+  .cost-alert.show { display: flex; align-items: center; gap: 0.5rem; }
+
   /* Responsive */
   @media (max-width: 1200px) {
     .projects-layout { grid-template-columns: 1fr; }
@@ -1051,6 +1342,8 @@
     .brief-sidebar { border-left: none; border-top: 1px solid var(--border); }
     .oz-layout { grid-template-columns: 1fr; }
     .marcus-panel-inner { grid-template-columns: 1fr; }
+    .cost-stats-row { grid-template-columns: repeat(2, 1fr); }
+    .cost-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -1088,6 +1381,10 @@
     <button class="nav-tab" data-tab="oz-status">
       <span class="tab-dot" id="dot-oz"></span>
       OZ Status
+    </button>
+    <button class="nav-tab" data-tab="cost">
+      <span class="tab-dot" id="dot-cost"></span>
+      Cost
     </button>
   </div>
   <div class="nav-right">
@@ -1236,6 +1533,105 @@
           <button class="oz-send-btn" id="oz-send">Ask Oz</button>
         </div>
       </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     COST TAB
+════════════════════════════════════ -->
+<div id="cost" class="tab-content">
+  <div class="cost-tab-layout">
+
+    <!-- Page Header -->
+    <div class="tab-page-header amber">
+      <div>
+        <h1 class="page-title amber">Cost Dashboard</h1>
+        <div class="page-subtitle">API Console Spend — <span id="cost-date-range">—</span></div>
+      </div>
+      <div class="oz-header-meta">
+        <div class="oz-header-stat">
+          Stream<span id="cost-stream">API Console</span>
+        </div>
+        <div class="oz-header-stat">
+          Updated<span id="cost-last-updated">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Budget Alert -->
+    <div class="cost-alert" id="cost-alert"></div>
+
+    <!-- Top Stats -->
+    <div class="cost-stats-row" id="cost-stats">
+      <div class="cost-stat-card">
+        <div class="cost-stat-label">Month to Date</div>
+        <div class="cost-stat-value amber" id="cost-mtd">—</div>
+        <div class="cost-stat-sub" id="cost-mtd-sub"></div>
+      </div>
+      <div class="cost-stat-card">
+        <div class="cost-stat-label">30-Day Projection</div>
+        <div class="cost-stat-value" id="cost-projected">—</div>
+        <div class="cost-stat-sub" id="cost-projected-sub"></div>
+      </div>
+      <div class="cost-stat-card">
+        <div class="cost-stat-label">Daily Avg (7d)</div>
+        <div class="cost-stat-value" id="cost-daily-avg">—</div>
+        <div class="cost-stat-sub" id="cost-daily-avg-sub"></div>
+      </div>
+      <div class="cost-stat-card">
+        <div class="cost-stat-label">Budget</div>
+        <div class="cost-stat-value" id="cost-budget">—</div>
+        <div class="cost-stat-sub" id="cost-budget-sub"></div>
+      </div>
+    </div>
+
+    <!-- Chart + Model Breakdown -->
+    <div class="cost-grid">
+      <div class="cost-panel">
+        <div class="cost-panel-title">
+          <span>Daily Spend</span>
+          <span style="font-family:'DM Mono';font-size:0.6rem;color:var(--text-dim)" id="cost-total-label"></span>
+        </div>
+        <div class="cost-chart" id="cost-chart">
+          <!-- Populated by JS -->
+        </div>
+        <div class="budget-bar-container" id="budget-bar-section" style="display:none">
+          <div class="budget-bar-header">
+            <span class="budget-bar-label">Budget Burn Rate</span>
+            <span class="budget-bar-label" id="budget-bar-pct"></span>
+          </div>
+          <div class="budget-bar-track">
+            <div class="budget-bar-fill" id="budget-bar-fill"></div>
+            <div class="budget-bar-projected" id="budget-bar-projected"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cost-panel">
+        <div class="cost-panel-title">Model Breakdown</div>
+        <div id="cost-models">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Pro Tier -->
+        <div class="pro-tier-section">
+          <div class="cost-panel-title" style="font-size:0.95rem;margin-top:0.5rem;">Pro Plan</div>
+          <div id="cost-pro-tier">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How to Update -->
+    <div class="cost-how-to">
+      <strong>How to update:</strong><br>
+      1. Export CSV from console.anthropic.com → Cost page → Export<br>
+      2. Save to ~/vault/cost-data/<br>
+      3. Run: python3 parse_cost_csv.py --budget 100<br>
+      4. Commit &amp; push → Vercel auto-deploys
     </div>
 
   </div>
@@ -1668,6 +2064,157 @@ function renderOzStatus(oz) {
 }
 
 // ═══════════════════════════════════════
+// COST TAB
+// ═══════════════════════════════════════
+
+const MODEL_COLORS = {
+  'Claude Opus 4.6':   '#c084fc',  // purple
+  'Claude Opus 4':     '#a855f7',  // purple darker
+  'Claude Sonnet 4.6': '#5b9bd5',  // blue
+  'Claude Sonnet 4.5': '#38bdf8',  // sky blue
+  'Claude Sonnet 4':   '#7dd3fc',  // light blue
+  'Claude Haiku 3':    '#6ee7b7',  // green
+  'Claude Haiku 4.5':  '#34d399',  // emerald
+  'Claude 3.5 Sonnet': '#60a5fa',  // blue lighter
+  'Claude 3.5 Haiku':  '#4ade80',  // green lighter
+};
+
+function getModelColor(model) {
+  for (const [key, color] of Object.entries(MODEL_COLORS)) {
+    if (model.includes(key) || key.includes(model)) return color;
+  }
+  // Fallback palette for unknown models
+  const fallback = ['#f87171', '#ecc94b', '#a78bfa', '#fb923c', '#34d399'];
+  let hash = 0;
+  for (let i = 0; i < model.length; i++) hash = model.charCodeAt(i) + ((hash << 5) - hash);
+  return fallback[Math.abs(hash) % fallback.length];
+}
+
+function renderCost(cost) {
+  if (!cost) {
+    document.getElementById('dot-cost')?.classList.add('red');
+    return;
+  }
+
+  // Staleness
+  const costAge = staleness(cost.lastUpdated, 86400); // 1 day threshold
+  setDot(document.getElementById('dot-cost'), costAge);
+
+  // Header info
+  const range = cost.dateRange || {};
+  document.getElementById('cost-date-range').textContent =
+    range.start && range.end ? `${range.start} to ${range.end}` : '—';
+  document.getElementById('cost-stream').textContent = cost.stream || 'API Console';
+  document.getElementById('cost-last-updated').textContent = formatAge(cost.lastUpdated);
+
+  // Top stats
+  const mtd = cost.monthToDate || 0;
+  const projected = cost.projectedMonthly || 0;
+  const dailyAvg = cost.trailing7DayAvg || 0;
+  const budget = cost.budget;
+
+  document.getElementById('cost-mtd').textContent = '$' + mtd.toFixed(2);
+  document.getElementById('cost-projected').textContent = '$' + projected.toFixed(2);
+  document.getElementById('cost-projected').className = 'cost-stat-value' +
+    (budget && projected > budget ? ' red' : budget && projected > budget * 0.8 ? ' amber' : '');
+  document.getElementById('cost-projected-sub').textContent = 'based on 7-day trailing avg';
+
+  document.getElementById('cost-daily-avg').textContent = '$' + dailyAvg.toFixed(2);
+  document.getElementById('cost-daily-avg-sub').textContent = 'per day';
+
+  if (budget) {
+    document.getElementById('cost-budget').textContent = '$' + budget.toFixed(0);
+    document.getElementById('cost-budget').className = 'cost-stat-value';
+    const pctUsed = Math.round((mtd / budget) * 100);
+    document.getElementById('cost-budget-sub').textContent = pctUsed + '% used this month';
+  } else {
+    document.getElementById('cost-budget').textContent = 'Not set';
+    document.getElementById('cost-budget').className = 'cost-stat-value';
+    document.getElementById('cost-budget-sub').textContent = 'set via --budget flag';
+  }
+
+  // Alert zone
+  const alert = document.getElementById('cost-alert');
+  if (budget && projected > budget) {
+    alert.innerHTML = `⚠ Projected monthly spend ($${projected.toFixed(2)}) exceeds budget ($${budget.toFixed(0)}). Consider reducing usage or increasing budget.`;
+    alert.classList.add('show');
+  } else if (budget && projected > budget * 0.8) {
+    alert.innerHTML = `⚡ Projected spend ($${projected.toFixed(2)}) is approaching budget ($${budget.toFixed(0)}).`;
+    alert.style.background = 'rgba(236,201,75,0.08)';
+    alert.style.borderColor = 'rgba(236,201,75,0.3)';
+    alert.style.color = '#ecc94b';
+    alert.classList.add('show');
+  }
+
+  // Daily chart
+  const daily = cost.daily || [];
+  const maxCost = Math.max(...daily.map(d => d.cost), 0.01);
+  const chartHeight = 160; // px available
+
+  // Collect all models across all days for consistent coloring
+  const allModels = new Set();
+  daily.forEach(d => Object.keys(d.models || {}).forEach(m => allModels.add(m)));
+  const modelList = [...allModels];
+
+  const chartHTML = daily.map(d => {
+    const models = d.models || {};
+    const segments = modelList.map(m => {
+      const segCost = models[m] || 0;
+      const segH = Math.max((segCost / maxCost) * chartHeight, segCost > 0 ? 2 : 0);
+      return `<div class="cost-bar-segment" style="height:${segH}px;background:${getModelColor(m)}" title="${m}: $${segCost.toFixed(4)}"></div>`;
+    }).join('');
+    const dateLabel = d.date.slice(5); // MM-DD
+    return `
+      <div class="cost-bar-group" title="$${d.cost.toFixed(4)} on ${d.date}">
+        <div class="cost-bar-stack">${segments}</div>
+        <div class="cost-bar-label">${dateLabel}</div>
+      </div>`;
+  }).join('');
+
+  document.getElementById('cost-chart').innerHTML = chartHTML;
+  document.getElementById('cost-total-label').textContent = `Total: $${(cost.totalCost||0).toFixed(2)}`;
+
+  // Budget burn bar
+  if (budget) {
+    document.getElementById('budget-bar-section').style.display = '';
+    const burnPct = Math.min((mtd / budget) * 100, 100);
+    const projPct = Math.min((projected / budget) * 100, 100);
+    const fill = document.getElementById('budget-bar-fill');
+    fill.style.width = burnPct + '%';
+    fill.className = 'budget-bar-fill' + (burnPct > 90 ? ' danger' : burnPct > 70 ? ' warning' : '');
+    document.getElementById('budget-bar-pct').textContent = burnPct.toFixed(0) + '% MTD';
+    const projMarker = document.getElementById('budget-bar-projected');
+    projMarker.style.left = projPct + '%';
+    projMarker.title = 'Projected: $' + projected.toFixed(2);
+  }
+
+  // Model breakdown
+  const totalCost = cost.totalCost || 1;
+  const modelsHTML = (cost.modelBreakdown || []).map(m => {
+    const pct = ((m.cost / totalCost) * 100).toFixed(1);
+    return `
+      <div class="model-row">
+        <span class="model-name">
+          <span class="model-color-dot" style="background:${getModelColor(m.model)}"></span>
+          ${m.model}
+        </span>
+        <span class="model-cost">$${m.cost.toFixed(4)}</span>
+        <span class="model-pct">${pct}%</span>
+      </div>`;
+  }).join('');
+  document.getElementById('cost-models').innerHTML = modelsHTML;
+
+  // Pro tier
+  const pro = cost.proTier || {};
+  const proHTML = pro.monthlySubscription != null ? `
+    <div class="cost-info-row"><span class="cost-info-key">Monthly Sub</span><span class="cost-info-val">$${pro.monthlySubscription}</span></div>
+    <div class="cost-info-row"><span class="cost-info-key">Extra Credits</span><span class="cost-info-val">${pro.extraCredits != null ? '$' + pro.extraCredits : '—'}</span></div>
+    <div class="cost-info-row"><span class="cost-info-key">Extra Consumed</span><span class="cost-info-val">${pro.extraConsumed != null ? '$' + pro.extraConsumed : '—'}</span></div>
+  ` : `<div class="cost-info-row"><span class="cost-info-key" style="color:var(--text-dim)">Not configured</span><span class="cost-info-val">Edit data.json proTier section</span></div>`;
+  document.getElementById('cost-pro-tier').innerHTML = proHTML;
+}
+
+// ═══════════════════════════════════════
 // ASK OZ
 // ═══════════════════════════════════════
 
@@ -1720,7 +2267,7 @@ document.getElementById('oz-input').addEventListener('keydown', e => {
 // TAB NAVIGATION
 // ═══════════════════════════════════════
 
-const tabAccents = { projects: '#5b9bd5', brief: '#48bb78', 'oz-status': '#f56565' };
+const tabAccents = { projects: '#5b9bd5', brief: '#48bb78', 'oz-status': '#f56565', cost: '#ecc94b' };
 
 document.querySelectorAll('.nav-tab').forEach(tab => {
   tab.addEventListener('click', () => {
@@ -1818,6 +2365,7 @@ async function loadData() {
     setDot(document.getElementById('dot-projects'), 'red');
     setDot(document.getElementById('dot-brief'), 'red');
     setDot(document.getElementById('dot-oz'), 'red');
+    setDot(document.getElementById('dot-cost'), 'red');
     const banner = document.getElementById('staleness-banner');
     banner.textContent = '⚠ data.json unavailable — displaying last known state. Oz may be offline.';
     banner.classList.add('dead', 'show');
@@ -1856,6 +2404,14 @@ async function loadData() {
   if (data.projects) renderProjects(data.projects);
   if (data.missionBrief) renderBrief(data.missionBrief, data.dailyBrief || {});
   if (data.ozStatus) renderOzStatus(data.ozStatus);
+  if (data.cost) renderCost(data.cost);
+
+  // Cost tab dot
+  if (data.cost) {
+    setDot(document.getElementById('dot-cost'), staleness(data.cost.lastUpdated, 86400));
+  } else {
+    setDot(document.getElementById('dot-cost'), 'red');
+  }
 
   // Hide loading
   setTimeout(() => document.getElementById('loading').classList.add('hidden'), 300);
