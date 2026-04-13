@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": "1.1.0",
-    "lastUpdated": "2026-04-13T14:22:02.386286-07:00",
+    "lastUpdated": "2026-04-13T14:23:18.381226-07:00",
     "updatedBy": "counsel-cmd2",
     "nextExpected": "2026-04-03T07:00:00-07:00",
     "stalenessThresholds": {
@@ -327,7 +327,7 @@
     }
   ],
   "cost": {
-    "lastUpdated": "2026-04-13T14:22:02.376827-07:00",
+    "lastUpdated": "2026-04-13T14:23:18.355543-07:00",
     "csvFile": "claude_api_cost_2026_04_01_to_2026_04_13.csv",
     "dateRange": {
       "start": "2026-04-01",
