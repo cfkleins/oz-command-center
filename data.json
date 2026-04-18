@@ -1,9 +1,9 @@
 {
   "_meta": {
     "version": "1.1.0",
-    "lastUpdated": "2026-04-13T14:23:18.381226-07:00",
-    "updatedBy": "counsel-cmd2",
-    "nextExpected": "2026-04-03T07:00:00-07:00",
+    "lastUpdated": "2026-04-18T18:45:39+00:00",
+    "updatedBy": "oz-update-script",
+    "nextExpected": "2026-04-18T19:45:39Z",
     "stalenessThresholds": {
       "ozStatus": 7200,
       "missionBrief": 604800,
@@ -11,7 +11,7 @@
     }
   },
   "ozStatus": {
-    "lastUpdated": "2026-04-02T12:00:00-07:00",
+    "lastUpdated": "2026-04-18T18:45:39+00:00",
     "gateway": {
       "url": "ws://127.0.0.1:18789",
       "protocol": "Connect v3",
@@ -177,10 +177,10 @@
     ]
   },
   "dailyBrief": {
-    "lastUpdated": "2026-04-02T12:00:00-07:00",
-    "date": "Thursday, April 2, 2026",
-    "time": "12:00 PM PT",
-    "infrastructureStatus": "All systems green. Gateway online. Open Brain at 439 thoughts. 5 cron jobs running. All 4 blockers cleared.",
+    "lastUpdated": "2026-04-18T18:45:39+00:00",
+    "date": "Saturday, April 18, 2026",
+    "time": "11:45 AM PT",
+    "infrastructureStatus": "Gateway: ONLINE. Open Brain: 439 thoughts. All systems green.",
     "openItems": [
       "Ask Marcus serverless proxy (OZ-CMD-1) — in progress",
       "Hermes Agent evaluation on Oz Box",
@@ -325,182 +325,5 @@
       "tokenActual": 0,
       "model": "Sonnet 4.6"
     }
-  ],
-  "cost": {
-    "lastUpdated": "2026-04-13T14:23:18.355543-07:00",
-    "csvFile": "claude_api_cost_2026_04_01_to_2026_04_13.csv",
-    "dateRange": {
-      "start": "2026-04-01",
-      "end": "2026-04-13"
-    },
-    "stream": "API Console",
-    "monthToDate": 95.93,
-    "projectedMonthly": 242.53,
-    "trailing7DayAvg": 8.08,
-    "totalCost": 95.93,
-    "peakDay": {
-      "date": "2026-04-08",
-      "cost": 26.38
-    },
-    "budget": 200.0,
-    "budgetStatus": "warning",
-    "modelBreakdown": [
-      {
-        "model": "Claude Sonnet 4.6",
-        "cost": 66.19,
-        "byType": {
-          "input_no_cache": 0.0,
-          "input_cache_read": 12.68,
-          "input_cache_write_5m": 47.81,
-          "output": 5.7
-        }
-      },
-      {
-        "model": "Claude Opus 4.6",
-        "cost": 29.34,
-        "byType": {
-          "input_no_cache": 0.0,
-          "input_cache_read": 8.98,
-          "input_cache_write_5m": 16.9,
-          "output": 3.46
-        }
-      },
-      {
-        "model": "Claude Sonnet 4.5",
-        "cost": 0.38,
-        "byType": {
-          "input_no_cache": 0.35,
-          "output": 0.03
-        }
-      },
-      {
-        "model": "Claude Sonnet 4",
-        "cost": 0.01,
-        "byType": {
-          "input_no_cache": 0.0,
-          "output": 0.01
-        }
-      },
-      {
-        "model": "Claude Haiku 3",
-        "cost": 0.01,
-        "byType": {
-          "input_no_cache": 0.0,
-          "input_cache_read": 0.0,
-          "input_cache_write_5m": 0.01,
-          "output": 0.0
-        }
-      }
-    ],
-    "daily": [
-      {
-        "date": "2026-04-01",
-        "cost": 4.81,
-        "models": {
-          "Claude Sonnet 4.6": 4.81
-        }
-      },
-      {
-        "date": "2026-04-02",
-        "cost": 5.62,
-        "models": {
-          "Claude Sonnet 4.6": 5.62
-        }
-      },
-      {
-        "date": "2026-04-03",
-        "cost": 10.6,
-        "models": {
-          "Claude Sonnet 4": 0.01,
-          "Claude Sonnet 4.6": 10.59
-        }
-      },
-      {
-        "date": "2026-04-04",
-        "cost": 1.91,
-        "models": {
-          "Claude Sonnet 4.6": 1.91
-        }
-      },
-      {
-        "date": "2026-04-05",
-        "cost": 2.7,
-        "models": {
-          "Claude Sonnet 4.6": 2.7
-        }
-      },
-      {
-        "date": "2026-04-06",
-        "cost": 13.7,
-        "models": {
-          "Claude Opus 4.6": 1.25,
-          "Claude Sonnet 4.6": 12.45
-        }
-      },
-      {
-        "date": "2026-04-07",
-        "cost": 20.3,
-        "models": {
-          "Claude Opus 4.6": 4.78,
-          "Claude Sonnet 4.6": 15.52
-        }
-      },
-      {
-        "date": "2026-04-08",
-        "cost": 26.38,
-        "models": {
-          "Claude Opus 4.6": 16.48,
-          "Claude Sonnet 4.6": 9.9
-        }
-      },
-      {
-        "date": "2026-04-09",
-        "cost": 0.88,
-        "models": {
-          "Claude Opus 4.6": 0.62,
-          "Claude Sonnet 4.6": 0.26
-        }
-      },
-      {
-        "date": "2026-04-10",
-        "cost": 0.24,
-        "models": {
-          "Claude Haiku 3": 0.01,
-          "Claude Sonnet 4.6": 0.23
-        }
-      },
-      {
-        "date": "2026-04-11",
-        "cost": 0.13,
-        "models": {
-          "Claude Sonnet 4": 0.0,
-          "Claude Sonnet 4.5": 0.01,
-          "Claude Sonnet 4.6": 0.12
-        }
-      },
-      {
-        "date": "2026-04-12",
-        "cost": 0.8,
-        "models": {
-          "Claude Sonnet 4.5": 0.23,
-          "Claude Sonnet 4.6": 0.57
-        }
-      },
-      {
-        "date": "2026-04-13",
-        "cost": 7.86,
-        "models": {
-          "Claude Opus 4.6": 6.21,
-          "Claude Sonnet 4.5": 0.14,
-          "Claude Sonnet 4.6": 1.51
-        }
-      }
-    ],
-    "proTier": {
-      "note": "Manual entry - update via script or data.json directly",
-      "monthlySubscription": null,
-      "extraCredits": null,
-      "extraConsumed": null
-    }
-  }
+  ]
 }
