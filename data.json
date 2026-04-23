@@ -1,9 +1,9 @@
 {
   "_meta": {
     "version": "1.1.0",
-    "lastUpdated": "2026-04-22T07:16:26+00:00",
+    "lastUpdated": "2026-04-23T20:00:02+00:00",
     "updatedBy": "oz-update-script",
-    "nextExpected": "2026-04-22T08:16:28Z",
+    "nextExpected": "2026-04-23T21:00:02Z",
     "stalenessThresholds": {
       "ozStatus": 7200,
       "missionBrief": 604800,
@@ -11,7 +11,7 @@
     }
   },
   "ozStatus": {
-    "lastUpdated": "2026-04-22T07:16:26+00:00",
+    "lastUpdated": "2026-04-23T20:00:02+00:00",
     "gateway": {
       "url": "ws://127.0.0.1:18789",
       "protocol": "Connect v3",
@@ -177,9 +177,9 @@
     ]
   },
   "dailyBrief": {
-    "lastUpdated": "2026-04-22T07:16:26+00:00",
-    "date": "Wednesday, April 22, 2026",
-    "time": "12:16 AM PT",
+    "lastUpdated": "2026-04-23T20:00:02+00:00",
+    "date": "Thursday, April 23, 2026",
+    "time": "1:00 PM PT",
     "infrastructureStatus": "Gateway: ONLINE. Open Brain: 439 thoughts. All systems green.",
     "openItems": [
       "Ask Marcus serverless proxy (OZ-CMD-1) — in progress",
