@@ -1,9 +1,9 @@
 {
   "_meta": {
     "version": "1.1.0",
-    "lastUpdated": "2026-04-25T14:00:03+00:00",
+    "lastUpdated": "2026-04-25T20:00:02+00:00",
     "updatedBy": "oz-update-script",
-    "nextExpected": "2026-04-25T15:00:06Z",
+    "nextExpected": "2026-04-25T21:00:02Z",
     "stalenessThresholds": {
       "ozStatus": 7200,
       "missionBrief": 604800,
@@ -11,11 +11,11 @@
     }
   },
   "ozStatus": {
-    "lastUpdated": "2026-04-25T14:00:03+00:00",
+    "lastUpdated": "2026-04-25T20:00:02+00:00",
     "gateway": {
       "url": "ws://127.0.0.1:18789",
       "protocol": "Connect v3",
-      "status": "OFFLINE",
+      "status": "ONLINE",
       "uptime": "11d+"
     },
     "models": {
@@ -177,10 +177,10 @@
     ]
   },
   "dailyBrief": {
-    "lastUpdated": "2026-04-25T14:00:03+00:00",
+    "lastUpdated": "2026-04-25T20:00:02+00:00",
     "date": "Saturday, April 25, 2026",
-    "time": "7:00 AM PT",
-    "infrastructureStatus": "Gateway: OFFLINE. Open Brain: 439 thoughts. Gateway offline — check OpenClaw.",
+    "time": "1:00 PM PT",
+    "infrastructureStatus": "Gateway: ONLINE. Open Brain: 439 thoughts. All systems green.",
     "openItems": [
       "Ask Marcus serverless proxy (OZ-CMD-1) — in progress",
       "Hermes Agent evaluation on Oz Box",
